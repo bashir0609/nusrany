@@ -5,6 +5,7 @@ import '@/styles/globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { MobileContactBar } from '@/components/layout/MobileContactBar'
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 import { getPublishedServices, getSiteSettings } from '@/lib/content/queries'
 
 // v1: render CMS content per request so published changes are visible on the
@@ -34,6 +35,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.variable}>
       <body>
+        <GoogleAnalytics />
         <a href="#main" className="skip-link">
           Skip to main content
         </a>
