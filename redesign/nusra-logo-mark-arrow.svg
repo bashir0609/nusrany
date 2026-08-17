@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 40 420 270" role="img" aria-label="Nusra NY arrow mark">
+  <!-- Lime frame: top bar -> left edge -> bottom bar -->
+  <path d="M240 55 L85 55 L85 295 L285 295" stroke="#A8C838" stroke-width="40" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Lime diagonal to top-right arrowhead -->
+  <path d="M285 295 L415 150" stroke="#A8C838" stroke-width="40" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="415,150 400.6,210.9 356,170.9" fill="#A8C838"/>
+  <!-- Small enclosed lime arrow, upper-left -->
+  <path d="M150 150 L200 100" stroke="#A8C838" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="200,100 188.7,142.5 157.5,111.3" fill="#A8C838"/>
+  <!-- Teal lower-right angular base -->
+  <polygon points="285,295 410,295 285,225" fill="#189090"/>
+  <!-- Teal diagonal to arrowhead -->
+  <path d="M330 255 L470 95" stroke="#189090" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="470,95 456.9,143.3 423.9,114.3" fill="#189090"/>
+</svg>

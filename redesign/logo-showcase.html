@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nusra NY — Logo System</title>
+<style>
+  :root{--navy:#0f2b46;--teal:#12707a;--accent:#e8922a;--cream:#faf7f2;--white:#fff;--ink:#232a33;--muted:#5c6672;--line:#e6e0d6}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+  .wrap{max-width:1000px;margin:0 auto;padding:2.5rem 1.5rem}
+  h1{font-size:1.9rem;color:var(--navy);font-weight:800}
+  .sub{color:var(--muted);margin-top:.4rem;max-width:60ch}
+  .grid{display:grid;gap:1.5rem;margin-top:2.2rem}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:2rem;box-shadow:0 4px 16px rgba(15,43,70,.06)}
+  .card h2{font-size:1.05rem;color:var(--navy);font-weight:700;margin-bottom:.3rem}
+  .card .tag{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.4rem}
+  .stage{border-radius:14px;padding:2.4rem 2rem;display:flex;align-items:center;justify-content:center;min-height:120px}
+  .stage.light{background:#fff;border:1px solid var(--line)}
+  .stage.navy{background:var(--navy)}
+  .stage.teal{background:linear-gradient(150deg,var(--navy),var(--teal))}
+  .stage.cream{background:var(--cream);border:1px solid var(--line)}
+  .row{display:flex;flex-wrap:wrap;gap:2.5rem;align-items:center;justify-content:center}
+  .pill{display:inline-block;background:#e7f1f2;color:var(--teal);font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;margin-left:.5rem}
+  .swatches{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.4rem}
+  .swatch{flex:1;min-width:140px}
+  .swatch .box{height:64px;border-radius:12px;border:1px solid var(--line)}
+  .swatch .name{font-weight:700;font-size:.85rem;margin-top:.5rem;color:var(--navy)}
+  .swatch .hex{font-size:.78rem;color:var(--muted)}
+  .note{font-size:.85rem;color:var(--muted);margin-top:1.2rem;line-height:1.7}
+  .note b{color:var(--navy)}
+  .grid.two{grid-template-columns:1fr}
+  @media(min-width:760px){.grid.two{grid-template-columns:1fr 1fr}}
+  .favicon-row{display:flex;gap:1.2rem;align-items:flex-end;margin-top:1.4rem}
+  .favicon-row .f{display:flex;flex-direction:column;align-items:center;gap:.5rem;font-size:.75rem;color:var(--muted)}
+  .files{margin-top:1.4rem;display:flex;flex-wrap:wrap;gap:.6rem}
+  .filechip{background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:.5rem .9rem;font-size:.8rem;font-weight:600;color:var(--navy)}
+  .filechip small{display:block;color:var(--muted);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Nusra NY — Logo System</h1>
+  <p class="sub">Deep navy + teal for trust, warm amber accent on the <b>N</b>'s closing stroke. Built for the new site's design direction — clean, modern, community-professional.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Primary lockup — light backgrounds <span class="pill">Header / White</span></h2>
+      <div class="tag">Header, hero, print</div>
+      <div class="stage light">
+        <svg width="330" height="72" viewBox="0 0 330 72" role="img" aria-label="Nusra NY — Tax, ITIN and Immigration Form Assistance" style="max-width:100%;height:auto">
+          <defs>
+            <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f2b46"/><stop offset="1" stop-color="#12707a"/></linearGradient>
+          </defs>
+          <g transform="translate(4 4)">
+            <rect width="64" height="64" rx="17" fill="url(#gA)"/>
+            <g fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 47 V17" stroke="#ffffff"/><path d="M19 17 L45 47" stroke="#ffffff"/><path d="M45 17 V47" stroke="#e8922a"/></g>
+          </g>
+          <text x="86" y="35" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="31" font-weight="800" letter-spacing="-0.6" fill="#0f2b46">Nusra<tspan fill="#e8922a"> NY</tspan></text>
+          <text x="87" y="55" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="10" font-weight="600" letter-spacing="2.4" fill="#5c6672">TAX · ITIN · IMMIGRATION FORMS</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="grid two">
+      <div class="card">
+        <h2>Dark lockup — navy backgrounds</h2>
+        <div class="tag">Footer / Hero CTA / Dark sections</div>
+        <div class="stage teal">
+          <svg width="300" height="72" viewBox="0 0 330 72" role="img" aria-label="Nusra NY logo on dark" style="max-width:100%;height:auto">
+            <defs>
+              <linearGradient id="gB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#16395c"/><stop offset="1" stop-color="#17808c"/></linearGradient>
+            </defs>
+            <g transform="translate(4 4)">
+              <rect width="64" height="64" rx="17" fill="url(#gB)" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+              <g fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 47 V17" stroke="#ffffff"/><path d="M19 17 L45 47" stroke="#ffffff"/><path d="M45 17 V47" stroke="#ffd9a0"/></g>
+            </g>
+            <text x="86" y="35" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="31" font-weight="800" letter-spacing="-0.6" fill="#ffffff">Nusra<tspan fill="#ffd9a0"> NY</tspan></text>
+            <text x="87" y="55" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="10" font-weight="600" letter-spacing="2.4" fill="#b9c8d8">TAX · ITIN · IMMIGRATION FORMS</text>
+          </svg>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Badge mark only</h2>
+        <div class="tag">Favicon · App icon · Avatar · Watermark</div>
+        <div class="stage cream">
+          <div class="row">
+            <svg width="88" height="88" viewBox="0 0 64 64" role="img" aria-label="Nusra NY badge">
+              <defs><linearGradient id="gC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f2b46"/><stop offset="1" stop-color="#12707a"/></linearGradient></defs>
+              <rect x="1.5" y="1.5" width="61" height="61" rx="17" fill="url(#gC)"/>
+              <g fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 47 V17" stroke="#ffffff"/><path d="M19 17 L45 47" stroke="#ffffff"/><path d="M45 17 V47" stroke="#e8922a"/></g>
+            </svg>
+            <svg width="132" height="132" viewBox="0 0 64 64" role="img" aria-label="Nusra NY badge large">
+              <defs><linearGradient id="gD" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f2b46"/><stop offset="1" stop-color="#12707a"/></linearGradient></defs>
+              <rect x="1.5" y="1.5" width="61" height="61" rx="17" fill="url(#gD)"/>
+              <g fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 47 V17" stroke="#ffffff"/><path d="M19 17 L45 47" stroke="#ffffff"/><path d="M45 17 V47" stroke="#e8922a"/></g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Brand palette</h2>
+      <div class="tag">Design tokens — WCAG-friendly pairing</div>
+      <div class="swatches">
+        <div class="swatch"><div class="box" style="background:#0f2b46"></div><div class="name">Deep Navy</div><div class="hex">#0F2B46 — trust, headers</div></div>
+        <div class="swatch"><div class="box" style="background:#12707a"></div><div class="name">Dark Teal</div><div class="hex">#12707A — secondary trust</div></div>
+        <div class="swatch"><div class="box" style="background:#e8922a"></div><div class="name">Warm Amber</div><div class="hex">#E8922A — calls to action</div></div>
+        <div class="swatch"><div class="box" style="background:#faf7f2"></div><div class="name">Warm Neutral</div><div class="hex">#FAF7F2 — section backgrounds</div></div>
+      </div>
+      <p class="note">
+        <b>Concept:</b> the badge is a rounded square (community warmth) holding a bold <b>N</b>; the <b>amber closing stroke</b> reads as both the final letterform and a subtle <b>checkmark</b> — suggesting "done right" and approval. The wordmark pairs a confident navy <b>Nusra</b> with amber <b>NY</b> (location-first), tagline in small caps.
+      </p>
+      <p class="note"><b>Usage:</b> never recolor the amber stroke to navy, never stretch the mark, min clear-space = height of the badge on all sides.</p>
+    </div>
+
+    <div class="card">
+      <h2>Files delivered</h2>
+      <div class="tag">In redesign/ folder — ready for WordPress upload</div>
+      <div class="files">
+        <div class="filechip">logo.svg<small>primary lockup · light</small></div>
+        <div class="filechip">logo-light.svg<small>dark lockup · navy</small></div>
+        <div class="filechip">logo-mark.svg<small>badge only · favicon/avatar</small></div>
+      </div>
+      <p class="note">SVG sources scale losslessly. For the site we'll also generate a true <b>favicon.ico</b> + <b>apple-touch-icon</b> from the badge.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

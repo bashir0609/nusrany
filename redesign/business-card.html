@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nusra NY — Business Card Redesign</title>
+<style>
+  :root{--navy:#0f2b46;--teal:#189090;--lime:#A8C838;--cream:#faf6ee;--ink:#232a33;--muted:#5c6672;--maroon:#7a1f2b}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:#e9e4da;color:var(--ink);line-height:1.5;padding:2rem 1rem}
+  .wrap{max-width:900px;margin:0 auto}
+  h1{font-size:1.6rem;color:var(--navy);font-weight:800;text-align:center}
+  .sub{color:var(--muted);text-align:center;margin:.4rem 0 2rem;font-size:.92rem}
+  .cards{display:grid;gap:2.5rem;justify-content:center}
+  .side-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;text-align:center}
+  /* Card is 1050x600 px (3.5x2in @300dpi) */
+  .card{width:525px;height:300px;position:relative;overflow:hidden;border-radius:14px;box-shadow:0 18px 45px rgba(0,0,0,.22);background:var(--cream)}
+  @media(max-width:600px){.card{width:min(525px,92vw);height:auto;aspect-ratio:1.75}}
+  /* front */
+  .front{display:flex;flex-direction:column;padding:26px 28px}
+  .front .top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  .front .logo-line{display:flex;align-items:center;gap:10px}
+  .front .bizname{font-size:24px;font-weight:800;color:var(--navy);line-height:1.05}
+  .front .bizname small{display:block;font-size:9.5px;font-weight:600;letter-spacing:.22em;color:var(--teal);text-transform:uppercase;margin-top:3px}
+  .front .deco{position:absolute;right:-30px;top:-30px;width:220px;height:220px;opacity:.9}
+  .front .who{margin-top:auto}
+  .front .name{font-size:20px;font-weight:800;color:var(--ink)}
+  .front .role{font-size:11.5px;color:var(--muted);font-weight:600;margin-top:1px}
+  .front .tag{font-size:9px;color:var(--teal);font-weight:700;letter-spacing:.08em;margin-top:6px;text-transform:uppercase}
+  /* back */
+  .back{background:linear-gradient(135deg,var(--navy) 0%,var(--teal) 100%);color:#fff;display:flex;flex-direction:column;padding:26px 28px}
+  .back .bhead{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#eaf6d6}
+  .back .bhead span{color:var(--lime)}
+  .back .services{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin-top:14px;flex:1}
+  .back .services li{list-style:none;font-size:11.5px;font-weight:600;display:flex;gap:8px;align-items:center}
+  .back .services .chk{color:var(--lime);font-weight:900;flex-shrink:0}
+  .back .contact{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;font-size:11px;font-weight:600;color:#eaf1f8}
+  .back .contact b{color:var(--lime);font-weight:800}
+  .back .fine{font-size:7.5px;color:#b9c8d8;margin-top:10px;line-height:1.5}
+  .files{margin:2rem auto 0;text-align:center}
+  .files .chip{display:inline-block;background:#fff;border:1px solid #d8d2c4;border-radius:10px;padding:.45rem .9rem;font-size:.8rem;font-weight:600;color:var(--navy);margin:.25rem}
+  .files .chip small{display:block;color:var(--muted);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Nusra NY — Business Card Redesign</h1>
+  <p class="sub">New lime/teal brand mark · verified contact details · print-ready exports in <b>redesign/exports/</b></p>
+
+  <div class="cards">
+    <div>
+      <div class="side-label">Front</div>
+      <div class="card front">
+        <div class="top">
+          <div class="logo-line">
+            <svg width="52" height="36" viewBox="70 40 420 270" aria-hidden="true">
+              <path d="M240 55 L85 55 L85 295 L285 295" stroke="#A8C838" stroke-width="40" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M285 295 L415 150" stroke="#A8C838" stroke-width="40" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <polygon points="415,150 400.6,210.9 356,170.9" fill="#A8C838"/>
+              <path d="M150 150 L200 100" stroke="#A8C838" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <polygon points="200,100 188.7,142.5 157.5,111.3" fill="#A8C838"/>
+              <polygon points="285,295 410,295 285,225" fill="#189090"/>
+              <path d="M330 255 L470 95" stroke="#189090" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <polygon points="470,95 456.9,143.3 423.9,114.3" fill="#189090"/>
+            </svg>
+            <div class="bizname">Nusra NY<small>Tax · ITIN · Immigration Forms</small></div>
+          </div>
+        </div>
+        <svg class="deco" viewBox="0 0 200 200" aria-hidden="true">
+          <rect x="0" y="120" width="200" height="80" fill="#A8C838" opacity=".16"/>
+          <polygon points="200,200 130,200 200,120" fill="#189090" opacity=".22"/>
+          <rect x="90" y="150" width="80" height="50" fill="#A8C838" opacity=".14" transform="rotate(-8 130 175)"/>
+        </svg>
+        <div class="who">
+          <div class="name">Aminul Islam Khan</div>
+          <div class="role">CEO &amp; President — Nusra Trading Inc</div>
+          <div class="tag">Multilingual · Queens · In-person &amp; virtual</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="side-label">Back</div>
+      <div class="card back">
+        <div class="bhead">Our Services <span>▸</span></div>
+        <ul class="services">
+          <li><span class="chk">✓</span>Individual Tax Returns</li>
+          <li><span class="chk">✓</span>Business &amp; Self-Employed Taxes</li>
+          <li><span class="chk">✓</span>ITIN Applications</li>
+          <li><span class="chk">✓</span>Immigration Form Assistance</li>
+          <li><span class="chk">✓</span>Business Formation</li>
+          <li><span class="chk">✓</span>Notary &amp; Community Services</li>
+        </ul>
+        <div class="contact">
+          <div><b>Call</b> +1 (347) 740-9782</div>
+          <div><b>WhatsApp</b> +1 (929) 672-0255</div>
+          <div><b>Email</b> info@nusrany.com</div>
+          <div><b>Office</b> 90-54 204 Street, Hollis NY 11423</div>
+        </div>
+        <div class="contact" style="margin-top:10px">
+          <div><b>Hours</b> Mon–Fri 11:30 AM – 5:30 PM</div>
+          <div><b>Payments</b> Cash · Zelle · Visa® · Mastercard®</div>
+        </div>
+        <div class="fine">We provide administrative assistance with tax preparation, ITIN applications and immigration forms. We are not a law firm and do not provide legal advice. © Nusra Trading Inc</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="files">
+    <div class="chip">business-card-front-1024.png<small>300 DPI print</small></div>
+    <div class="chip">business-card-back-1024.png<small>300 DPI print</small></div>
+    <div class="chip">business-card-front.jpg<small>email/web</small></div>
+    <div class="chip">business-card-back.jpg<small>email/web</small></div>
+  </div>
+</div>
+</body>
+</html>

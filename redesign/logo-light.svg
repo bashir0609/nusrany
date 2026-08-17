@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 72" role="img" aria-label="Nusra NY — Tax, ITIN and Immigration Form Assistance">
+  <defs>
+    <linearGradient id="nusra-badge-g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16395c"/>
+      <stop offset="1" stop-color="#17808c"/>
+    </linearGradient>
+  </defs>
+  <!-- Badge mark (lightened for dark backgrounds) -->
+  <g transform="translate(4 4)">
+    <rect width="64" height="64" rx="17" fill="url(#nusra-badge-g2)" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+    <g fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 47 V17" stroke="#ffffff"/>
+      <path d="M19 17 L45 47" stroke="#ffffff"/>
+      <path d="M45 17 V47" stroke="#ffd9a0"/>
+    </g>
+  </g>
+  <!-- Wordmark -->
+  <text x="86" y="35" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="31" font-weight="800" letter-spacing="-0.6" fill="#ffffff">Nusra<tspan fill="#ffd9a0"> NY</tspan></text>
+  <text x="87" y="55" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="10" font-weight="600" letter-spacing="2.4" fill="#b9c8d8">TAX · ITIN · IMMIGRATION FORMS</text>
+</svg>
