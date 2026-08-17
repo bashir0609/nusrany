@@ -427,8 +427,7 @@ export const aboutPageSeed = {
 export const contactPageSeed = {
   headline: 'Contact & Directions',
   lead: 'Reach our Queens team by phone, text, WhatsApp, email, or in person.',
-  formIntro:
-    'Prefer to send a request online? Fill out the short form and we will get back to you. Please do not submit Social Security numbers, passport numbers, tax documents, immigration documents, banking details, or other highly sensitive personal information through this form.',
+  formIntro: 'Prefer to send a request online? Fill out the short form and we will get back to you.',
 }
 
 export type SeedResult = {
