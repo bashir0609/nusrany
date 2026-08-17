@@ -2,6 +2,11 @@ import { draftMode } from 'next/headers'
 import { getLegalContent } from '@/lib/content/queries'
 import { getLegalFallback } from '@/seed/legalContent'
 import { RichTextContent } from '@/lib/content/richText'
+import { buildMetadata } from '@/lib/seo/metadata'
+
+export function buildLegalMetadata(title: string, path: string) {
+  return buildMetadata({ title, path })
+}
 
 type LegalKind = 'privacyPolicy' | 'terms' | 'disclaimer'
 

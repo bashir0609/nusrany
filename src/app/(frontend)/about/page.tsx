@@ -1,7 +1,23 @@
+import type { Metadata } from 'next'
 import { getAboutPage, getSiteSettings } from '@/lib/content/queries'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { RichTextContent } from '@/lib/content/richText'
 import { buildTelHref } from '@/lib/site/contactLinks'
+import { buildMetadata } from '@/lib/seo/metadata'
+import { buildBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
+import { getMediaUrl } from '@/lib/site/media'
+import { JsonLd } from '@/components/seo/JsonLd'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const about = await getAboutPage()
+  return buildMetadata({
+    title: 'About',
+    seoTitle: about.seo?.title,
+    description: about.seo?.description ?? about.lead,
+    imageUrl: getMediaUrl(about.ownerPhoto),
+    path: '/about',
+  })
+}
 
 export default async function AboutPage() {
   const about = await getAboutPage()
@@ -11,6 +27,7 @@ export default async function AboutPage() {
 
   return (
     <main>
+      <JsonLd data={buildBreadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])} />
       <section className="border-b border-border bg-surface-warm">
         <div className="container-nusra py-12 md:py-16">
           <h1>{about.headline}</h1>

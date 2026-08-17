@@ -1,7 +1,8 @@
 import { expect, test } from '@playwright/test'
 
 test.describe('site navigation', () => {
-  test('desktop header shows nav links and contact CTAs', async ({ page }) => {
+  test('desktop header shows nav links and contact CTAs', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'desktop header only')
     await page.goto('/')
     const header = page.locator('header')
     await expect(header.getByRole('link', { name: 'Home', exact: true })).toBeVisible()
@@ -18,7 +19,8 @@ test.describe('site navigation', () => {
     await expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/19296720255')
   })
 
-  test('services dropdown lists seeded services', async ({ page }) => {
+  test('services dropdown lists seeded services', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'desktop header only')
     await page.goto('/')
     const servicesButton = page.getByRole('button', { name: /Services/ })
     await servicesButton.hover()

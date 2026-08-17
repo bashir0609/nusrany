@@ -1,10 +1,20 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getPostsByCategory } from '@/lib/content/queries'
 import { Section } from '@/components/sections/Section'
 import { PostCard } from '@/components/blog/PostCard'
+import { buildMetadata } from '@/lib/seo/metadata'
 
 type Props = {
   params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  return buildMetadata({
+    title: slug.replace(/-/g, ' '),
+    path: `/blog/category/${slug}`,
+  })
 }
 
 export default async function BlogCategoryPage({ params }: Props) {

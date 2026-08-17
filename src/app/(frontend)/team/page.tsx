@@ -1,8 +1,18 @@
+import type { Metadata } from 'next'
 import { getPublishedTeam, getSiteSettings } from '@/lib/content/queries'
 import type { TeamMember } from '@/payload-types'
 import { Section } from '@/components/sections/Section'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { buildMailtoHref, buildTelHref } from '@/lib/site/contactLinks'
+import { buildMetadata } from '@/lib/seo/metadata'
+import { buildBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
+import { JsonLd } from '@/components/seo/JsonLd'
+
+export const metadata: Metadata = buildMetadata({
+  title: 'Meet the Team',
+  description: 'Meet the team behind Nusra Tax & Notary — real people with verified roles serving Queens, NY.',
+  path: '/team',
+})
 
 function MemberCard({ member }: { member: TeamMember }) {
   const photo = typeof member.photo === 'object' && member.photo ? member.photo : null
@@ -61,6 +71,7 @@ export default async function TeamPage() {
 
   return (
     <Section>
+      <JsonLd data={buildBreadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Team', path: '/team' }])} />
       <SectionHeading
         as="h1"
         title="Meet the Team"

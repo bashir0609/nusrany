@@ -18,6 +18,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.SITE_URL || 'http://localhost:3000'),
   description: 'Nusra Tax & Notary — tax preparation, notary, immigration forms, defensive driving and TLC transportation in Queens, NY.',
   title: {
     default: 'Nusra Tax & Notary | Queens, NY',

@@ -1,13 +1,24 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getPublishedCategories, getPublishedPosts } from '@/lib/content/queries'
 import { Section } from '@/components/sections/Section'
 import { PostCard } from '@/components/blog/PostCard'
+import { buildMetadata } from '@/lib/seo/metadata'
+import { buildBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
+import { JsonLd } from '@/components/seo/JsonLd'
+
+export const metadata: Metadata = buildMetadata({
+  title: 'Blog',
+  description: 'Practical information about taxes, notary services, forms, and more — from your Queens team.',
+  path: '/blog',
+})
 
 export default async function BlogPage() {
   const [posts, categories] = await Promise.all([getPublishedPosts(12), getPublishedCategories()])
 
   return (
     <Section>
+      <JsonLd data={buildBreadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }])} />
       <h1>Blog</h1>
       <p className="mt-3 max-w-2xl text-muted">
         Practical information about taxes, notary services, forms, and more — from your Queens team.

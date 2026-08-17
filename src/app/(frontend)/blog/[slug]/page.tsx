@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
@@ -8,9 +9,26 @@ import { PostMeta } from '@/components/blog/PostMeta'
 import { RelatedPosts } from '@/components/blog/RelatedPosts'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { buildTelHref, buildWhatsAppHref } from '@/lib/site/contactLinks'
+import { buildMetadata } from '@/lib/seo/metadata'
+import { buildArticleJsonLd, buildBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
+import { getMediaUrl } from '@/lib/site/media'
+import { JsonLd } from '@/components/seo/JsonLd'
 
 type Props = {
   params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const post = await getPostBySlug(slug)
+  if (!post) return {}
+  return buildMetadata({
+    title: post.title,
+    seoTitle: post.seo?.title,
+    description: post.seo?.description ?? post.excerpt,
+    imageUrl: getMediaUrl(post.featuredImage),
+    path: `/blog/${post.slug}`,
+  })
 }
 
 export default async function BlogPostPage({ params }: Props) {
@@ -20,11 +38,16 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound()
 
   const [related, settings] = await Promise.all([getRelatedPosts(post), getSiteSettings()])
+  const ldJson = [buildArticleJsonLd(post, settings)]
   const image = typeof post.featuredImage === 'object' && post.featuredImage ? post.featuredImage : null
   const relatedServices = post.relatedServices?.filter((s): s is Service => typeof s !== 'number') ?? []
 
   return (
     <main>
+      {ldJson.map((data, index) => (
+        <JsonLd key={index} data={data} />
+      ))}
+      <JsonLd data={buildBreadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }, { name: post.title, path: `/blog/${post.slug}` }])} />
       <article className="container-nusra py-12 md:py-16">
         <p className="text-sm">
           <Link href="/blog" className="font-medium text-brand-secondary hover:underline">

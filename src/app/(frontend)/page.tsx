@@ -1,4 +1,8 @@
+import type { Metadata } from 'next'
 import type { Faq, Review, Service, TeamMember } from '@/payload-types'
+import { buildMetadata } from '@/lib/seo/metadata'
+import { buildLocalBusinessJsonLd } from '@/lib/seo/jsonLd'
+import { JsonLd } from '@/components/seo/JsonLd'
 import {
   getHomepage,
   getPublishedFAQs,
@@ -17,6 +21,16 @@ import { HomeFaqSection } from '@/components/sections/HomeFaqSection'
 import { HomeOfficeSection } from '@/components/sections/HomeOfficeSection'
 import { HomeFinalCtaSection } from '@/components/sections/HomeFinalCtaSection'
 
+export async function generateMetadata(): Promise<Metadata> {
+  const homepage = await getHomepage()
+  return buildMetadata({
+    seoTitle: homepage.seo?.title,
+    description: homepage.seo?.description ?? homepage.heroSupportingCopy,
+    imageUrl: typeof homepage.heroImage === 'object' && homepage.heroImage ? homepage.heroImage.url ?? null : null,
+    path: '/',
+  })
+}
+
 export default async function HomePage() {
   const homepage = await getHomepage()
   const settings = await getSiteSettings()
@@ -33,6 +47,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <JsonLd data={buildLocalBusinessJsonLd(settings)} />
       <HeroSection
         headline={homepage.heroHeadline}
         supportingCopy={homepage.heroSupportingCopy}

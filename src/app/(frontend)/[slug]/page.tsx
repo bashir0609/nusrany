@@ -1,12 +1,31 @@
+import type { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 import type { Service } from '@/payload-types'
 import { getPublishedFAQs, getPublishedServices, getServiceBySlug, getSiteSettings } from '@/lib/content/queries'
 import { isReservedServiceSlug } from '@/lib/site/reservedSlugs'
+import { buildMetadata } from '@/lib/seo/metadata'
+import { buildServiceJsonLd } from '@/lib/seo/jsonLd'
+import { getMediaUrl } from '@/lib/site/media'
+import { JsonLd } from '@/components/seo/JsonLd'
 import { ServiceTemplate } from '@/components/service/ServiceTemplate'
 
 type Props = {
   params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  if (isReservedServiceSlug(slug)) return {}
+  const service = await getServiceBySlug(slug)
+  if (!service) return {}
+  return buildMetadata({
+    title: service.title,
+    seoTitle: service.seo?.title,
+    description: service.seo?.description ?? service.shortDescription,
+    imageUrl: getMediaUrl(service.heroImage),
+    path: `/${service.slug}`,
+  })
 }
 
 export default async function ServicePage({ params }: Props) {
@@ -30,11 +49,14 @@ export default async function ServicePage({ params }: Props) {
     allServices.filter((s) => s.slug !== service.slug).slice(0, 3)
 
   return (
-    <ServiceTemplate
-      service={service}
-      settings={settings}
-      faqs={faqs.map((faq) => ({ question: faq.question, answer: faq.answer }))}
-      relatedServices={relatedServices}
-    />
+    <>
+      <JsonLd data={buildServiceJsonLd(service, settings)} />
+      <ServiceTemplate
+        service={service}
+        settings={settings}
+        faqs={faqs.map((faq) => ({ question: faq.question, answer: faq.answer }))}
+        relatedServices={relatedServices}
+      />
+    </>
   )
 }

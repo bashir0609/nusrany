@@ -1,8 +1,22 @@
+import type { Metadata } from 'next'
 import { getContactPage, getPublishedServices, getSiteSettings } from '@/lib/content/queries'
 import { RequestAssistanceForm } from '@/components/forms/RequestAssistanceForm'
 import { Section } from '@/components/sections/Section'
 import { buildMailtoHref, buildTelHref, buildWhatsAppHref } from '@/lib/site/contactLinks'
 import { MailIcon, MapPinIcon, PhoneIcon, WhatsAppIcon } from '@/components/ui/icons'
+import { buildMetadata } from '@/lib/seo/metadata'
+import { buildBreadcrumbJsonLd } from '@/lib/seo/jsonLd'
+import { JsonLd } from '@/components/seo/JsonLd'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const contact = await getContactPage()
+  return buildMetadata({
+    title: 'Contact & Directions',
+    seoTitle: contact.seo?.title,
+    description: contact.seo?.description ?? 'Contact Nusra Tax & Notary in Hollis, Queens — call, text, WhatsApp, or send a request online.',
+    path: '/contact',
+  })
+}
 
 export default async function ContactPage() {
   const contact = await getContactPage()
@@ -12,6 +26,7 @@ export default async function ContactPage() {
 
   return (
     <Section>
+      <JsonLd data={buildBreadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }])} />
       <h1>{contact.headline}</h1>
       {contact.lead ? <p className="mt-4 max-w-2xl text-lg text-muted">{contact.lead}</p> : null}
 
