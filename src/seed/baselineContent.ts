@@ -1,5 +1,5 @@
 import type { Payload } from 'payload'
-import { legalContentSeed } from './legalContent'
+import { legalContentSeed, richTextFromParagraphs } from './legalContent'
 
 /**
  * Verified business facts — see docs/02-verification-sheet.md.
@@ -39,7 +39,22 @@ export const siteSettingsSeed = {
   socialLinks: [],
 }
 
-export const serviceSeeds = [
+export const serviceSeeds: Array<{
+  title: string
+  slug: string
+  shortDescription: string
+  heroTitle: string
+  heroLead?: string
+  explanationHeading?: string
+  explanationContent?: string
+  audiencesHeading?: string
+  audiences?: Array<{ title: string; description?: string }>
+  benefitsHeading?: string
+  benefits?: Array<{ title: string; description?: string }>
+  processHeading?: string
+  processSteps?: Array<{ title: string; description?: string }>
+  displayOrder?: number
+}> = [
   {
     title: 'Tax Preparation',
     slug: 'tax-preparation',
@@ -238,9 +253,16 @@ export const serviceSeeds = [
     ],
     displayOrder: 6,
   },
-] as const
+]
 
-export const teamSeeds = [
+export const teamSeeds: Array<{
+  name: string
+  role: string
+  bio: string
+  credentials: Array<{ label: string }>
+  languages: Array<{ label: string }>
+  displayOrder?: number
+}> = [
   {
     name: 'Aminul Islam Khan',
     role: 'Owner, Nusra Trading Inc.',
@@ -260,15 +282,15 @@ export const teamSeeds = [
     ],
     displayOrder: 1,
   },
-] as const
+]
 
-export const blogCategorySeeds = [
+export const blogCategorySeeds: Array<{ title: string; slug: string }> = [
   { title: 'Tax', slug: 'tax' },
   { title: 'Notary', slug: 'notary' },
   { title: 'Community', slug: 'community' },
-] as const
+]
 
-export const faqSeeds = [
+export const faqSeeds: Array<{ question: string; answer: string; displayOrder?: number }> = [
   {
     question: 'Do I need an appointment?',
     answer:
@@ -337,7 +359,7 @@ export const faqSeeds = [
       'Do not send passports, Social Security numbers, or financial records by email or text. We will arrange a secure way to share documents when we start working together.',
     displayOrder: 12,
   },
-] as const
+]
 
 export const homepageSeed = {
   heroHeadline: 'Tax, Notary & Essential Services You Can Rely On',
@@ -390,7 +412,9 @@ export const homepageSeed = {
 export const aboutPageSeed = {
   headline: 'About Nusra Tax & Notary',
   lead: 'Nusra Tax & Notary (operating under Nusra Trading Inc) is a multilingual Queens-based team helping individuals, families, self-employed workers, and small businesses with tax preparation, immigration forms, notary services, defensive driving, and TLC transportation.',
-  body: 'We are local — our office is at 90-54 204th Street in Hollis, Queens, and walk-ins are welcome. We work in English, \u09ac\u09be\u0982\u09b2\u09be, Espa\u00f1ol, \u0939\u093f\u0902\u0926\u0940 and Fran\u00e7ais, and we keep pricing clear and upfront. From document review to filing, we guide you through each step in plain language.',
+  body: richTextFromParagraphs([
+    'We are local — our office is at 90-54 204th Street in Hollis, Queens, and walk-ins are welcome. We work in English, \u09ac\u09be\u0982\u09b2\u09be, Espa\u00f1ol, \u0939\u093f\u0902\u0926\u0940 and Fran\u00e7ais, and we keep pricing clear and upfront. From document review to filing, we guide you through each step in plain language.',
+  ]),
   ownerName: 'Aminul Islam Khan',
   ownerRole: 'Owner, Nusra Trading Inc.',
   establishedYear: '2020',
@@ -423,7 +447,11 @@ async function upsertService(payload: Payload, seed: (typeof serviceSeeds)[numbe
     where: { slug: { equals: seed.slug } },
     limit: 1,
   })
-  const data = { ...seed, _status: 'published' as const }
+  const data = {
+    ...seed,
+    explanationContent: seed.explanationContent ? richTextFromParagraphs([seed.explanationContent]) : undefined,
+    _status: 'published' as const,
+  }
   if (existing.docs.length > 0) {
     await payload.update({
       collection: 'services',
@@ -440,21 +468,18 @@ async function upsertService(payload: Payload, seed: (typeof serviceSeeds)[numbe
   }
 }
 
-async function upsertBySlug<T extends { slug: string }>(
-  payload: Payload,
-  collection: 'blog-categories',
-  seed: T,
-) {
+async function upsertBySlug(payload: Payload, collection: 'blog-categories', seed: { title: string; slug: string }) {
   const existing = await payload.find({
     collection,
     overrideAccess: true,
     where: { slug: { equals: seed.slug } },
     limit: 1,
   })
+  const data = { title: seed.title, slug: seed.slug }
   if (existing.docs.length > 0) {
-    await payload.update({ collection, id: existing.docs[0].id, overrideAccess: true, data: seed })
+    await payload.update({ collection, id: existing.docs[0].id, overrideAccess: true, data })
   } else {
-    await payload.create({ collection, overrideAccess: true, data: seed })
+    await payload.create({ collection, overrideAccess: true, data })
   }
 }
 

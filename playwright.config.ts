@@ -1,8 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
 import 'dotenv/config'
 
-const PORT = process.env.PORT ?? '3000'
-const baseURL = `http://localhost:${PORT}`
+const baseURL = 'http://localhost:3000'
 
 export default defineConfig({
   testDir: './tests/e2e',
@@ -19,7 +18,7 @@ export default defineConfig({
   projects: [
     {
       name: 'desktop-chromium',
-      use: { ...devices['Desktop Chrome'], channel: 'chromium' },
+      use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'mobile-chromium',
@@ -27,9 +26,11 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `pnpm dev --port ${PORT}`,
+    command: 'pnpm dev',
     reuseExistingServer: true,
     url: baseURL,
-    timeout: 180_000,
+    timeout: 240_000,
+    // The shell environment may export PORT=0; pin the dev server to the base URL port.
+    env: { ...process.env, PORT: '3000' },
   },
 })
