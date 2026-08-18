@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next'
 import { getPublishedCategories, getPublishedPosts, getPublishedServices } from '@/lib/content/queries'
 import { getEnv } from '@/lib/env'
 
+export const dynamic = 'force-dynamic'
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getEnv().SITE_URL.replace(/\/+$/, '')
   const now = new Date()
