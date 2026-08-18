@@ -2,7 +2,7 @@ import { createElement } from 'react'
 import { Resend } from 'resend'
 import type { Payload } from 'payload'
 import type { Inquiry, Service, SiteSetting } from '@/payload-types'
-import { env } from '@/lib/env'
+import { getEnv } from '@/lib/env'
 import { InquiryNotification } from '@/emails/InquiryNotification'
 import type { NormalizedInquiryInput } from './normalize'
 
@@ -41,12 +41,12 @@ async function sendInquiryEmailViaResend({
   inquiry: Inquiry
   siteSettings: SiteSetting
 }) {
-  if (!env.RESEND_API_KEY) {
+  if (!getEnv().RESEND_API_KEY) {
     throw new Error('Resend API key is not configured')
   }
-  const resend = new Resend(env.RESEND_API_KEY)
+  const resend = new Resend(getEnv().RESEND_API_KEY)
   const { error } = await resend.emails.send({
-    from: env.RESEND_FROM_EMAIL || 'Nusra Website <website@nusrany.com>',
+    from: getEnv().RESEND_FROM_EMAIL || 'Nusra Website <website@nusrany.com>',
     to: siteSettings.inquiryNotificationEmail,
     subject: `New Nusra website inquiry: ${inquiry.serviceLabelSnapshot ?? 'request'}`,
     react: createElement(InquiryNotification, {

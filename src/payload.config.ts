@@ -19,7 +19,7 @@ import { ContactPage } from './globals/ContactPage'
 import { Homepage } from './globals/Homepage'
 import { LegalContent } from './globals/LegalContent'
 import { SiteSettings } from './globals/SiteSettings'
-import { env } from './lib/env'
+import { getEnv } from './lib/env'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -37,14 +37,13 @@ export default buildConfig({
   collections: [Users, Media, Services, TeamMembers, BlogCategories, BlogPosts, Reviews, FAQs, Inquiries],
   globals: [SiteSettings, Homepage, AboutPage, ContactPage, LegalContent],
   editor: lexicalEditor(),
-  secret: env.PAYLOAD_SECRET,
-  serverURL: env.SITE_URL,
+  secret: getEnv().PAYLOAD_SECRET,
+  serverURL: getEnv().SITE_URL,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
-    pool: {
-      connectionString: env.DATABASE_URL,
+    pool: {        connectionString: getEnv().DATABASE_URL,
     },
   }),
   sharp,
@@ -56,12 +55,12 @@ export default buildConfig({
   },
   plugins: [
     vercelBlobStorage({
-      enabled: Boolean(env.BLOB_READ_WRITE_TOKEN),
+      enabled: Boolean(getEnv().BLOB_READ_WRITE_TOKEN),
       collections: {
         media: true,
       },
       clientUploads: true,
-      token: env.BLOB_READ_WRITE_TOKEN,
+      token: getEnv().BLOB_READ_WRITE_TOKEN,
     }),
   ],
 })

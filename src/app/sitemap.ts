@@ -1,9 +1,9 @@
 import type { MetadataRoute } from 'next'
 import { getPublishedCategories, getPublishedPosts, getPublishedServices } from '@/lib/content/queries'
-import { env } from '@/lib/env'
+import { getEnv } from '@/lib/env'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = env.SITE_URL.replace(/\/+$/, '')
+  const base = getEnv().SITE_URL.replace(/\/+$/, '')
   const now = new Date()
 
   const staticPaths = ['', '/about', '/services', '/team', '/blog', '/contact', '/privacy', '/terms', '/disclaimer']

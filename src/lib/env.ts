@@ -15,8 +15,19 @@ const serverEnvSchema = z.object({
   GOOGLE_SITE_VERIFICATION: z.string().optional(),
 })
 
+export type ServerEnv = z.infer<typeof serverEnvSchema>
+
 export function parseServerEnv(input: Record<string, string | undefined>) {
   return serverEnvSchema.parse(input)
 }
 
-export const env = parseServerEnv(process.env)
+// Lazy getter: env is only validated on first access at runtime, not at
+// import time. This lets `next build` succeed without env vars — they are
+// required only when the routes that use them are actually invoked.
+let _env: ServerEnv | null = null
+export function getEnv(): ServerEnv {
+  if (!_env) {
+    _env = parseServerEnv(process.env)
+  }
+  return _env
+}

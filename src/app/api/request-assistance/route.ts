@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import type { ZodError } from 'zod'
 import { getCms } from '@/lib/payload/getPayload'
-import { env } from '@/lib/env'
+import { getEnv } from '@/lib/env'
 import { validateInquiry } from '@/lib/inquiries/schema'
 import { normalizeInquiryInput } from '@/lib/inquiries/normalize'
 import { createRateLimitFingerprint } from '@/lib/inquiries/fingerprint'
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
   // HMAC fingerprint — never store or log the raw IP.
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
   const userAgent = request.headers.get('user-agent') || ''
-  const fingerprint = createRateLimitFingerprint(ip, userAgent, env.RATE_LIMIT_HMAC_SECRET)
+  const fingerprint = createRateLimitFingerprint(ip, userAgent, getEnv().RATE_LIMIT_HMAC_SECRET)
 
   // Rate limiting
   const payload = await getCms()
