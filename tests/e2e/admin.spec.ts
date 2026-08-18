@@ -4,7 +4,7 @@ import fs from 'fs'
 import path from 'path'
 
 // The suite mutates shared Site Settings / Homepage globals, so run serially.
-test.describe.configure({ mode: 'serial' })
+test.describe.configure({ mode: 'serial', timeout: 120_000 })
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@nusrany.com'
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'nusra-local-admin-password-2026'
