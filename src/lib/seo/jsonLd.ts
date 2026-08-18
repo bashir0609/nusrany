@@ -1,7 +1,6 @@
 import type { BlogPost, Service, SiteSetting } from '@/payload-types'
-import { getEnv } from '@/lib/env'
 
-const siteUrl = () => getEnv().SITE_URL.replace(/\/+$/, '')
+const siteUrl = () => (process.env.SITE_URL || 'https://nusrany.com').replace(/\/+$/, '')
 
 export type JsonLd = Record<string, unknown>
 

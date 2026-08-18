@@ -1,8 +1,7 @@
 import type { MetadataRoute } from 'next'
-import { getEnv } from '@/lib/env'
 
 export default function robots(): MetadataRoute.Robots {
-  const base = getEnv().SITE_URL.replace(/\/+$/, '')
+  const base = (process.env.SITE_URL || 'https://nusrany.com').replace(/\/+$/, '')
   return {
     rules: [
       {
