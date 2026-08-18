@@ -1,0 +1,13 @@
+node_modules
+.next
+.tools
+.freebuff
+images
+redesign
+test-results
+playwright-report
+blob-report
+coverage
+*.tsbuildinfo
+.env*
+.vercel

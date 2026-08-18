@@ -46,5 +46,12 @@ next-env.d.ts
 # local tools (portable postgres, etc.)
 /.tools/
 
+# asset directories (uploaded via CMS, not deployed)
+/images/
+/redesign/
+
 # Freebuff app internals
 /.freebuff/
+
+.vercel
+.env*
