@@ -2,7 +2,6 @@ node_modules
 .next
 .tools
 .freebuff
-images
 redesign
 test-results
 playwright-report
