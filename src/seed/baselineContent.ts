@@ -265,7 +265,7 @@ export const teamSeeds: Array<{
 }> = [
   {
     name: 'Aminul Islam Khan',
-    role: 'Owner, Nusra Trading Inc.',
+    role: 'CEO, Nusra Trading Inc.',
     bio: 'Aminul leads Nusra Tax & Notary with a focus on clear, respectful, multilingual service for Queens families, drivers, and small businesses.',
     credentials: [
       { label: 'Certified and bonded New York Notary Public (online notarization)' },
@@ -416,7 +416,7 @@ export const aboutPageSeed = {
     'We are local — our office is at 90-54 204th Street in Hollis, Queens, and walk-ins are welcome. We work in English, \u09ac\u09be\u0982\u09b2\u09be, Espa\u00f1ol, \u0939\u093f\u0902\u0926\u0940 and Fran\u00e7ais, and we keep pricing clear and upfront. From document review to filing, we guide you through each step in plain language.',
   ]),
   ownerName: 'Aminul Islam Khan',
-  ownerRole: 'Owner, Nusra Trading Inc.',
+  ownerRole: 'CEO, Nusra Trading Inc.',
   establishedYear: '2020',
   serviceArea:
     'Queens and the surrounding community — in person at our Hollis office; 24/7 TLC transportation across all five NYC boroughs.',
