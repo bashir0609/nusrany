@@ -34,7 +34,13 @@ export const siteSettingsSeed = {
   callNowLabel: 'Call Now',
   whatsAppLabel: 'WhatsApp',
   getDirectionsLabel: 'Get Directions',
-  verifiedCredentialLabels: [],
+  verifiedCredentialLabels: [
+    { label: 'Serving Queens Since 2020' },
+    { label: 'IRS e-file Provider' },
+    { label: 'PTIN Registered Tax Preparer' },
+    { label: 'Certified NY Notary Public' },
+    { label: '5 Languages Spoken' },
+  ],
   footerText: 'Serving Queens and the surrounding community since 2020.',
   socialLinks: [],
 }
@@ -362,7 +368,7 @@ export const faqSeeds: Array<{ question: string; answer: string; displayOrder?: 
 ]
 
 export const homepageSeed = {
-  heroHeadline: 'Tax, Notary & Essential Services You Can Rely On',
+  heroHeadline: 'Tax, Notary & Business Services for Queens Families & Businesses',
   heroSupportingCopy:
     'Practical, personal assistance for individuals, families, drivers, and small businesses in Queens, New York.',
   servicesHeading: 'Our Services',

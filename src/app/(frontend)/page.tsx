@@ -12,9 +12,9 @@ import {
   getSiteSettings,
 } from '@/lib/content/queries'
 import { ReferenceHeroSection } from '@/components/sections/ReferenceHeroSection'
-import { StatsStripSection } from '@/components/sections/StatsStripSection'
+import { ProfessionalCredentialsSection } from '@/components/sections/ProfessionalCredentialsSection'
 import { ReferenceServicesSection } from '@/components/sections/ReferenceServicesSection'
-import { ReferenceTrustSection } from '@/components/sections/ReferenceTrustSection'
+import { HomeTrustSection } from '@/components/sections/HomeTrustSection'
 import { HomeTeamSection } from '@/components/sections/HomeTeamSection'
 import { HomeReviewsSection } from '@/components/sections/HomeReviewsSection'
 import { HomeHowItWorksSection } from '@/components/sections/HomeHowItWorksSection'
@@ -42,9 +42,9 @@ export default async function HomePage() {
 
   const selectedServices = homepage.services?.filter((s): s is Service => typeof s !== 'number') ?? []
   const services = selectedServices.length > 0 ? selectedServices : allServices
-  const teamMembers = homepage.teamMembers?.filter((m): m is TeamMember => typeof m !== 'number') ?? []
-  const reviewDocs = homepage.reviews?.filter((r): r is Review => typeof r !== 'number') ?? []
-  const faqDocs = homepage.faqs?.filter((f): f is Faq => typeof f !== 'number') ?? []
+  const teamMembers = homepage.teamMembers?.filter((m): m is TeamMember => typeof m !== 'number') ?? team
+  const reviewDocs = homepage.reviews?.filter((r): r is Review => typeof r !== 'number') ?? reviews
+  const faqDocs = homepage.faqs?.filter((f): f is Faq => typeof f !== 'number') ?? faqs
 
   return (
     <>
@@ -55,14 +55,14 @@ export default async function HomePage() {
         heroImage={homepage.heroImage}
         settings={settings}
       />
-      <StatsStripSection sinceYear={settings.sinceYear} serviceCount={services.length} languageCount={settings.languages?.length ?? 0} />
+      <ProfessionalCredentialsSection settings={settings} />
       <ReferenceServicesSection heading={homepage.servicesHeading} intro={homepage.servicesIntro} services={services} />
-      <ReferenceTrustSection items={homepage.whyChooseUs ?? []} />
+      <HomeTrustSection whyHeading={homepage.whyChooseUsHeading} whyItems={homepage.whyChooseUs ?? []} whoHeading={homepage.whoWeHelpHeading} whoItems={homepage.whoWeHelp ?? []} />
       <HomeTeamSection heading={homepage.teamHeading} members={teamMembers} />
+      <HomeOfficeSection settings={settings} />
       <HomeReviewsSection heading={homepage.reviewsHeading} reviews={reviewDocs} />
       <HomeHowItWorksSection heading={homepage.howItWorksHeading} steps={homepage.howItWorksSteps ?? []} />
       <HomeFaqSection heading={homepage.faqsHeading} faqs={faqDocs} />
-      <HomeOfficeSection settings={settings} />
       <HomeFinalCtaSection headline={homepage.finalCtaHeadline} copy={homepage.finalCtaCopy} settings={settings} />
     </>
   )
