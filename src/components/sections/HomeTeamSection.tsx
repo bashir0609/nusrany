@@ -13,16 +13,16 @@ export function HomeTeamSection({ heading, members }: HomeTeamSectionProps) {
   return (
     <Section id="team" tone="warm">
       <SectionHeading title={heading || 'A local team that takes your questions seriously'} lead="Professional experience, clear communication, and multilingual local support." />
-      <ul className="mt-10 grid gap-5 lg:grid-cols-3">
+      <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {members.map((member, index) => {
           const photo = typeof member.photo === 'object' && member.photo ? member.photo : null
           const displayRole = member.name.trim().toLowerCase() === 'aminul islam khan' ? 'CEO, Nusra Trading Inc.' : member.role
           return (
-            <li key={member.name} className={`${index === 0 ? 'lg:col-span-2 lg:flex-row' : 'flex-col'} premium-card flex gap-6 p-6 md:p-8`}>
+            <li key={member.name} className="premium-card flex h-full flex-col gap-4 p-5 md:p-6">
               {photo ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={photo.url ?? ''} alt={photo.alt ?? member.name} className="h-32 w-32 shrink-0 rounded-[var(--radius-card-sm)] object-cover" />
-              ) : <div className="grid h-32 w-32 shrink-0 place-items-center rounded-[var(--radius-card-sm)] bg-brand-primary text-4xl font-extrabold text-brand-lime">{member.name.slice(0, 1)}</div>}
+                <img src={photo.url ?? ''} alt={photo.alt ?? member.name} className="aspect-[4/3] w-full rounded-[var(--radius-card-sm)] object-cover" />
+              ) : <div className="grid aspect-[4/3] w-full place-items-center rounded-[var(--radius-card-sm)] bg-brand-primary text-4xl font-extrabold text-brand-lime">{member.name.slice(0, 1)}</div>}
               <div>
                 <p className="eyebrow">{index === 0 ? 'Lead advisor' : 'Nusra team'}</p>
                 <h3 className="mt-2 text-brand-primary">{member.name}</h3>
