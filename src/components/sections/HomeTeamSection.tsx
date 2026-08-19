@@ -16,6 +16,7 @@ export function HomeTeamSection({ heading, members }: HomeTeamSectionProps) {
       <ul className="mt-10 grid gap-5 lg:grid-cols-3">
         {members.map((member, index) => {
           const photo = typeof member.photo === 'object' && member.photo ? member.photo : null
+          const displayRole = member.name.trim().toLowerCase() === 'aminul islam khan' ? 'CEO, Nusra Trading Inc.' : member.role
           return (
             <li key={member.name} className={`${index === 0 ? 'lg:col-span-2 lg:flex-row' : 'flex-col'} premium-card flex gap-6 p-6 md:p-8`}>
               {photo ? (
@@ -25,7 +26,7 @@ export function HomeTeamSection({ heading, members }: HomeTeamSectionProps) {
               <div>
                 <p className="eyebrow">{index === 0 ? 'Lead advisor' : 'Nusra team'}</p>
                 <h3 className="mt-2 text-brand-primary">{member.name}</h3>
-                {member.role ? <p className="mt-1 font-bold text-brand-secondary">{member.role}</p> : null}
+                {displayRole ? <p className="mt-1 font-bold text-brand-secondary">{displayRole}</p> : null}
                 {member.bio ? <p className="mt-3 leading-7 text-muted">{member.bio}</p> : null}
                 {index === 0 ? <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wide text-brand-primary"><span className="rounded-full bg-surface-tint px-3 py-2">IRS e-file</span><span className="rounded-full bg-surface-tint px-3 py-2">PTIN registered</span><span className="rounded-full bg-surface-tint px-3 py-2">NY notary</span></div> : null}
               </div>
