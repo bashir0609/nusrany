@@ -11,9 +11,10 @@ import {
   getPublishedTeam,
   getSiteSettings,
 } from '@/lib/content/queries'
-import { HeroSection } from '@/components/sections/HeroSection'
-import { HomeServicesSection } from '@/components/sections/HomeServicesSection'
-import { HomeTrustSection } from '@/components/sections/HomeTrustSection'
+import { ReferenceHeroSection } from '@/components/sections/ReferenceHeroSection'
+import { StatsStripSection } from '@/components/sections/StatsStripSection'
+import { ReferenceServicesSection } from '@/components/sections/ReferenceServicesSection'
+import { ReferenceTrustSection } from '@/components/sections/ReferenceTrustSection'
 import { HomeTeamSection } from '@/components/sections/HomeTeamSection'
 import { HomeReviewsSection } from '@/components/sections/HomeReviewsSection'
 import { HomeHowItWorksSection } from '@/components/sections/HomeHowItWorksSection'
@@ -48,26 +49,15 @@ export default async function HomePage() {
   return (
     <>
       <JsonLd data={buildLocalBusinessJsonLd(settings)} />
-      <HeroSection
+      <ReferenceHeroSection
         headline={homepage.heroHeadline}
         supportingCopy={homepage.heroSupportingCopy}
         heroImage={homepage.heroImage}
         settings={settings}
       />
-      <HomeServicesSection
-        heading={homepage.servicesHeading}
-        intro={homepage.servicesIntro}
-        services={services}
-        featuredService={homepage.featuredService}
-        featuredHeadline={homepage.featuredHeadline}
-        featuredBody={homepage.featuredBody}
-      />
-      <HomeTrustSection
-        whyHeading={homepage.whyChooseUsHeading}
-        whyItems={homepage.whyChooseUs ?? []}
-        whoHeading={homepage.whoWeHelpHeading}
-        whoItems={homepage.whoWeHelp ?? []}
-      />
+      <StatsStripSection sinceYear={settings.sinceYear} serviceCount={services.length} languageCount={settings.languages?.length ?? 0} />
+      <ReferenceServicesSection heading={homepage.servicesHeading} intro={homepage.servicesIntro} services={services} />
+      <ReferenceTrustSection items={homepage.whyChooseUs ?? []} />
       <HomeTeamSection heading={homepage.teamHeading} members={teamMembers} />
       <HomeReviewsSection heading={homepage.reviewsHeading} reviews={reviewDocs} />
       <HomeHowItWorksSection heading={homepage.howItWorksHeading} steps={homepage.howItWorksSteps ?? []} />
