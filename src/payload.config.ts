@@ -35,6 +35,9 @@ export default buildConfig({
     meta: {
       titleSuffix: ' — Nusra CMS',
     },
+    components: {
+      beforeDashboard: ['./components/admin/WelcomeDashboard'],
+    },
   },
   collections: [Users, Media, Services, TeamMembers, BlogCategories, BlogPosts, Reviews, FAQs, Inquiries],
   globals: [SiteSettings, Homepage, AboutPage, ContactPage, LegalContent],

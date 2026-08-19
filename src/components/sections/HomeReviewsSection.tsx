@@ -8,35 +8,26 @@ type HomeReviewsSectionProps = {
 }
 
 export function HomeReviewsSection({ heading, reviews }: HomeReviewsSectionProps) {
-  if (reviews.length === 0) return null
   return (
-    <Section tone="warm" id="reviews">
-      <SectionHeading title={heading} />
-      <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {reviews.map((review) => (
-          <li key={review.id} className="card flex h-full flex-col p-6">
-            <blockquote className="flex-1 text-ink">
-              <p className="text-base leading-relaxed">&ldquo;{review.reviewText}&rdquo;</p>
-            </blockquote>
-            <footer className="mt-4 text-sm">
-              <p className="font-semibold text-brand-primary">{review.authorName}</p>
-              {review.serviceReceived ? <p className="text-muted">{review.serviceReceived}</p> : null}
-              {review.sourceName && review.sourceUrl ? (
-                <a
-                  href={review.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-brand-secondary hover:underline"
-                >
-                  {review.sourceName}
-                </a>
-              ) : review.sourceName ? (
-                <p className="text-muted">{review.sourceName}</p>
-              ) : null}
-            </footer>
-          </li>
-        ))}
-      </ul>
+    <Section id="reviews">
+      <SectionHeading title={heading || 'Trusted by Queens families & businesses'} lead="We are collecting verified client feedback and will share it here as it becomes available." />
+      {reviews.length > 0 ? (
+        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {reviews.map((review) => (
+            <figure key={review.id} className="premium-card flex h-full flex-col p-6">
+              <div className="text-brand-lime" aria-label="Verified review">★★★★★</div>
+              <blockquote className="mt-5 flex-1 text-lg leading-8 text-brand-primary">“{review.reviewText}”</blockquote>
+              <figcaption className="mt-5 text-sm font-bold text-muted">{review.authorName}{review.serviceReceived ? ` · ${review.serviceReceived}` : ''}</figcaption>
+            </figure>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-10 rounded-[var(--radius-card)] border border-dashed border-brand-secondary/35 bg-surface-tint p-8 md:p-12">
+          <p className="eyebrow">Coming soon</p>
+          <p className="mt-3 max-w-2xl text-2xl font-bold tracking-tight text-brand-primary">Trusted by Queens families &amp; businesses.</p>
+          <p className="mt-3 max-w-2xl leading-7 text-muted">Verified reviews will appear here once the team has permission to publish them. We do not use placeholder testimonials.</p>
+        </div>
+      )}
     </Section>
   )
 }

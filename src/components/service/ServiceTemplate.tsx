@@ -21,10 +21,11 @@ export function ServiceTemplate({ service, settings, faqs, relatedServices }: Se
   return (
     <main>
       {/* Hero */}
-      <section className="border-b border-border bg-surface-warm">
-        <div className="container-nusra py-12 md:py-16">
-          <h1>{service.heroTitle || service.title}</h1>
-          {service.heroLead ? <p className="mt-4 max-w-2xl text-lg text-muted">{service.heroLead}</p> : null}
+      <section className="relative overflow-hidden bg-brand-primary text-white">
+        <div className="container-nusra relative py-16 md:py-24">
+          <p className="eyebrow text-brand-lime">Nusra Tax &amp; Notary</p>
+          <h1 className="mt-5 max-w-4xl text-white">{service.heroTitle || service.title}</h1>
+          {service.heroLead ? <p className="mt-5 max-w-2xl text-lg leading-8 text-white/75">{service.heroLead}</p> : null}
           <div className="mt-8 flex flex-wrap gap-3">
             <ButtonLink href={buildTelHref(settings.phone)} variant="primary">
               {settings.callNowLabel || 'Call Now'}
@@ -41,7 +42,7 @@ export function ServiceTemplate({ service, settings, faqs, relatedServices }: Se
 
       {/* Explanation */}
       {service.explanationContent ? (
-        <section className="py-12 md:py-16">
+        <section className="py-20 md:py-28">
           <div className="container-nusra">
             <SectionHeading title={service.explanationHeading || 'How we help'} />
             <RichTextContent data={service.explanationContent} className="max-w-3xl text-muted" />
@@ -51,12 +52,12 @@ export function ServiceTemplate({ service, settings, faqs, relatedServices }: Se
 
       {/* Audiences */}
       {audiences.length > 0 ? (
-        <section className="bg-surface-warm py-12 md:py-16">
+        <section className="bg-surface-tint py-20 md:py-28">
           <div className="container-nusra">
             <SectionHeading title={service.audiencesHeading || 'Who it is for'} />
             <ul className="grid gap-4 sm:grid-cols-2">
               {audiences.map((audience) => (
-                <li key={audience.id ?? audience.title} className="card p-5">
+                <li key={audience.id ?? audience.title} className="premium-card p-6">
                   <p className="font-semibold text-brand-primary">{audience.title}</p>
                   {audience.description ? <p className="mt-1 text-muted">{audience.description}</p> : null}
                 </li>
@@ -68,12 +69,12 @@ export function ServiceTemplate({ service, settings, faqs, relatedServices }: Se
 
       {/* Benefits */}
       {benefits.length > 0 ? (
-        <section className="py-12 md:py-16">
+        <section className="py-20 md:py-28">
           <div className="container-nusra">
             <SectionHeading title={service.benefitsHeading || 'What to expect'} />
             <ul className="grid gap-4 sm:grid-cols-2">
               {benefits.map((benefit) => (
-                <li key={benefit.id ?? benefit.title} className="card p-5">
+                <li key={benefit.id ?? benefit.title} className="premium-card p-6">
                   <p className="font-semibold text-brand-primary">{benefit.title}</p>
                   {benefit.description ? <p className="mt-1 text-muted">{benefit.description}</p> : null}
                 </li>
@@ -85,12 +86,12 @@ export function ServiceTemplate({ service, settings, faqs, relatedServices }: Se
 
       {/* Process */}
       {steps.length > 0 ? (
-        <section className="bg-surface-warm py-12 md:py-16">
+        <section className="bg-surface-tint py-20 md:py-28">
           <div className="container-nusra">
             <SectionHeading title={service.processHeading || 'How it works'} />
             <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {steps.map((step, index) => (
-                <li key={step.id ?? step.title} className="card p-6">
+                <li key={step.id ?? step.title} className="premium-card p-7">
                   <span
                     aria-hidden="true"
                     className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-primary text-sm font-bold text-white"
@@ -108,7 +109,7 @@ export function ServiceTemplate({ service, settings, faqs, relatedServices }: Se
 
       {/* FAQs */}
       {faqs.length > 0 ? (
-        <section className="py-12 md:py-16">
+        <section className="py-20 md:py-28">
           <div className="container-nusra">
             <SectionHeading title="Frequently asked questions" />
             <FaqAccordion items={faqs} />
@@ -118,7 +119,7 @@ export function ServiceTemplate({ service, settings, faqs, relatedServices }: Se
 
       {/* Related services */}
       {relatedServices.length > 0 ? (
-        <section className="bg-surface-warm py-12 md:py-16">
+        <section className="bg-surface-tint py-20 md:py-28">
           <div className="container-nusra">
             <SectionHeading title="Related services" />
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -136,7 +137,7 @@ export function ServiceTemplate({ service, settings, faqs, relatedServices }: Se
       ) : null}
 
       {/* Final CTA */}
-      <section className="bg-brand-primary py-14 text-white">
+      <section className="relative overflow-hidden bg-brand-primary py-20 text-white md:py-28">
         <div className="container-nusra text-center">
           <h2 className="text-white">Ready to get started?</h2>
           <p className="mx-auto mt-3 max-w-2xl text-white/85">

@@ -19,7 +19,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.SITE_URL || 'https://nusrany.com'),
   description: 'Nusra Tax & Notary — tax preparation, notary, immigration forms, defensive driving and TLC transportation in Queens, NY.',
   title: {
     default: 'Nusra Tax & Notary | Queens, NY',
@@ -40,7 +40,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           Skip to main content
         </a>
         <Header settings={settings} services={services} />
-        <main id="main">{children}</main>
+        <main id="main" className="min-h-screen">{children}</main>
         <Footer settings={settings} services={services} />
         <MobileContactBar settings={settings} />
       </body>

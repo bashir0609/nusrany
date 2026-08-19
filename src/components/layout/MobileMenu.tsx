@@ -44,7 +44,7 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
         aria-controls="mobile-menu"
         aria-label={open ? 'Close menu' : 'Open menu'}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink hover:bg-surface-warm lg:hidden"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-brand-primary transition hover:bg-surface-tint lg:hidden"
       >
         {open ? <CloseIcon /> : <MenuIcon />}
       </button>
@@ -52,9 +52,13 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
       {open ? (
         <div
           id="mobile-menu"
-          className="fixed inset-x-0 top-[72px] z-[60] h-[calc(100dvh-72px)] max-h-[calc(100dvh-72px)] overscroll-contain overflow-y-auto bg-surface px-4 pb-32 pt-4 lg:hidden"
+          className="fixed inset-x-0 top-[76px] z-[60] h-[calc(100dvh-76px)] max-h-[calc(100dvh-76px)] overflow-y-auto overscroll-contain bg-white px-5 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-5 shadow-2xl lg:hidden"
         >
-          <nav aria-label="Mobile">
+          <nav aria-label="Mobile navigation" className="mx-auto max-w-xl">
+            <div className="mb-5 rounded-[var(--radius-card)] bg-brand-primary p-5 text-white">
+              <p className="eyebrow text-brand-lime">Nusra Tax &amp; Notary</p>
+              <p className="mt-2 text-sm leading-6 text-white/75">Professional expertise with multilingual local support.</p>
+            </div>
             <ul className="divide-y divide-border">
               <li>
                 <Link ref={firstLinkRef} href="/" onClick={() => setOpen(false)} className="block py-3 text-lg font-semibold text-ink">
@@ -62,8 +66,8 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
                 </Link>
               </li>
               <li>
-                <Link href="/about" onClick={() => setOpen(false)} className="block py-3 text-lg font-semibold text-ink">
-                  About
+                <Link href="/#why-us" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
+                  Why Us
                 </Link>
               </li>
               <li>
@@ -84,38 +88,43 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
                 </ul>
               </li>
               <li>
-                <Link href="/team" onClick={() => setOpen(false)} className="block py-3 text-lg font-semibold text-ink">
+                <Link href="/#team" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
                   Team
                 </Link>
               </li>
               <li>
-                <Link href="/blog" onClick={() => setOpen(false)} className="block py-3 text-lg font-semibold text-ink">
-                  Blog
+                <Link href="/#reviews" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
+                  Reviews
                 </Link>
               </li>
               <li>
-                <Link href="/contact" onClick={() => setOpen(false)} className="block py-3 text-lg font-semibold text-ink">
-                  Contact
+                <Link href="/#faq" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="/#location" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
+                  Location
                 </Link>
               </li>
             </ul>
-            <div className="mt-6 flex flex-col gap-3">
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
               <a
                 href={buildTelHref(phone)}
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-primary px-6 py-3 font-semibold text-white"
+                className="premium-button premium-button-primary"
               >
                 <PhoneIcon className="h-5 w-5" aria-hidden="true" /> Call Now
               </a>
               <a
                 href={buildWhatsAppHref(whatsApp)}
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#1f7a3d] px-6 py-3 font-semibold text-white"
+                className="premium-button bg-[#1f7a3d] text-white hover:bg-[#175e2f]"
               >
                 <WhatsAppIcon className="h-5 w-5" aria-hidden="true" /> WhatsApp
               </a>
               <Link
                 href="/contact"
                 onClick={() => setOpen(false)}
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-brand-primary px-6 py-3 font-semibold text-brand-primary"
+                className="premium-button premium-button-secondary"
               >
                 Request Assistance
               </Link>
