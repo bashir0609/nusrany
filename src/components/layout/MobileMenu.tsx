@@ -52,7 +52,7 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
       {open ? (
         <div
           id="mobile-menu"
-          className="fixed inset-x-0 top-[72px] bottom-0 z-[60] overscroll-contain overflow-y-auto bg-surface px-4 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-4 lg:hidden"
+          className="fixed inset-x-0 top-[72px] z-[60] h-[calc(100dvh-72px)] max-h-[calc(100dvh-72px)] overscroll-contain overflow-y-auto bg-surface px-4 pb-32 pt-4 lg:hidden"
         >
           <nav aria-label="Mobile">
             <ul className="divide-y divide-border">
