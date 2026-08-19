@@ -44,7 +44,7 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
         aria-controls="mobile-menu"
         aria-label={open ? 'Close menu' : 'Open menu'}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink hover:bg-surface-warm md:hidden"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink hover:bg-surface-warm lg:hidden"
       >
         {open ? <CloseIcon /> : <MenuIcon />}
       </button>
@@ -52,7 +52,7 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
       {open ? (
         <div
           id="mobile-menu"
-          className="fixed inset-x-0 top-[72px] bottom-0 z-50 overflow-y-auto bg-surface px-4 pb-24 pt-4 md:hidden"
+          className="fixed inset-x-0 top-[72px] bottom-0 z-[60] overscroll-contain overflow-y-auto bg-surface px-4 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-4 lg:hidden"
         >
           <nav aria-label="Mobile">
             <ul className="divide-y divide-border">

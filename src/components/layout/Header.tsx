@@ -14,10 +14,10 @@ type HeaderProps = {
 export function Header({ settings, services }: HeaderProps) {
   const navServices = services.map((service) => ({ title: service.title, slug: service.slug }))
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-border bg-surface/95 backdrop-blur">
       <div className="container-nusra flex h-[72px] items-center justify-between gap-4">
         <Logo />
-        <nav aria-label="Main" className="hidden md:block">
+        <nav aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-1">
             <li>
               <Link href="/" className="rounded-full px-3 py-2 font-medium text-ink hover:text-brand-secondary">
@@ -49,7 +49,7 @@ export function Header({ settings, services }: HeaderProps) {
             </li>
           </ul>
         </nav>
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           <a
             href={buildTelHref(settings.phone)}
             className="inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 font-semibold text-brand-primary hover:bg-surface-warm"
