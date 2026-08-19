@@ -52,7 +52,7 @@ export function Header({ settings, services }: HeaderProps) {
         <div className="hidden items-center gap-2 md:flex">
           <a
             href={buildTelHref(settings.phone)}
-            className="inline-flex min-h-11 items-center gap-2 rounded-full px-4 py-2 font-semibold text-brand-primary hover:bg-surface-warm"
+            className="inline-flex min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 font-semibold text-brand-primary hover:bg-surface-warm"
           >
             <PhoneIcon className="h-5 w-5" aria-hidden="true" />
             {formatDisplayPhone(settings.phone)}
