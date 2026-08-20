@@ -37,7 +37,7 @@ export function ReferenceHeroSection({ heroImage, settings }: ReferenceHeroSecti
           </div>
           <p className="mt-7 text-xs font-semibold text-muted">We speak: English · বাংলা · Español · हिंदी · Français</p>
         </div>
-        <div className="relative min-h-[390px] overflow-hidden bg-surface-warm lg:min-h-[560px]">
+        <div className="relative col-span-full -mx-5 min-h-[390px] w-screen max-w-none overflow-hidden bg-surface-warm sm:-mx-8 lg:col-auto lg:mx-0 lg:mr-[calc((100vw-100%)/-2)] lg:w-[50vw] lg:min-h-[560px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={image?.url ?? '/images/nusra-office.jpg'} alt={image?.alt ?? 'Nusra Tax & Notary office in Queens'} className="h-full min-h-[390px] w-full object-cover lg:min-h-[560px]" />
           <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-brand-primary/10" aria-hidden="true" />
