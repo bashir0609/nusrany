@@ -88,6 +88,11 @@
     @apply mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10;
   }
 
+  /* Full-width layout for hero bands that must reach both viewport edges. */
+  .container-nusra-bleed {
+    @apply w-full px-5 sm:px-8 lg:px-10;
+  }
+
   .card {
     @apply rounded-[var(--radius-card)] border border-border bg-surface;
     box-shadow: var(--shadow-card);
