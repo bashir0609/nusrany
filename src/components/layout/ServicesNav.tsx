@@ -39,7 +39,7 @@ export function ServicesNav({ services }: ServicesNavProps) {
         aria-expanded={open}
         aria-haspopup="true"
         onClick={() => setOpen((value) => !value)}
-        className="flex items-center gap-1 rounded-full px-3 py-2 text-sm font-semibold text-ink transition hover:bg-surface-tint hover:text-brand-secondary"
+        className="flex items-center gap-1 rounded-sm px-2.5 py-2 text-xs font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
       >
         Services
         <span aria-hidden="true" className={`text-[0.65rem] transition-transform ${open ? 'rotate-180' : ''}`}>▾</span>

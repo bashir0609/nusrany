@@ -44,7 +44,7 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
         aria-controls="mobile-menu"
         aria-label={open ? 'Close menu' : 'Open menu'}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-brand-primary transition hover:bg-surface-tint lg:hidden"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-white/20 text-white transition hover:bg-white/10 lg:hidden"
       >
         {open ? <CloseIcon /> : <MenuIcon />}
       </button>
@@ -52,7 +52,7 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
       {open ? (
         <div
           id="mobile-menu"
-          className="fixed inset-x-0 top-[76px] z-[60] h-[calc(100dvh-76px)] max-h-[calc(100dvh-76px)] overflow-y-auto overscroll-contain bg-white px-5 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-5 shadow-2xl lg:hidden"
+          className="fixed inset-x-0 top-[68px] z-[60] h-[calc(100dvh-68px)] max-h-[calc(100dvh-68px)] overflow-y-auto overscroll-contain bg-white px-5 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-5 shadow-2xl lg:hidden"
         >
           <nav aria-label="Mobile navigation" className="mx-auto max-w-xl">
             <div className="mb-5 rounded-[var(--radius-card)] bg-brand-primary p-5 text-white">
@@ -66,8 +66,8 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
                 </Link>
               </li>
               <li>
-                <Link href="/#why-us" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
-                  Why Us
+                  <Link href="/about" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
+                  About
                 </Link>
               </li>
               <li>
@@ -93,13 +93,8 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
                 </Link>
               </li>
               <li>
-                <Link href="/#reviews" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
-                  Reviews
-                </Link>
-              </li>
-              <li>
-                <Link href="/#faq" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
-                  FAQ
+                <Link href="/blog" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
+                  Resources
                 </Link>
               </li>
               <li>

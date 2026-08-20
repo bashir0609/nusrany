@@ -8,24 +8,23 @@ type HomeTrustSectionProps = {
   whoItems: Array<{ label: string }>
 }
 
-const defaultTrust = [
-  { title: 'Local Queens office', description: 'Real people, clear answers, and a neighborhood office you can reach.' },
-  { title: 'Verified credentials', description: 'IRS e-file provider, PTIN registered tax preparer, and certified NY notary public.' },
-  { title: 'Multilingual team', description: 'Support for English, বাংলা, Español, हिंदी, and Français.' },
-  { title: 'Secure document handling', description: 'Careful processes and respectful handling of sensitive information.' },
-  { title: 'Schedule C & E experience', description: 'Practical tax support for families, independent drivers, and owners.' },
-  { title: 'Clear pricing', description: 'Straightforward next steps without confusing packages or pressure.' },
+const defaultWhy = [
+  { title: 'Local & Community Focused', description: 'A real Queens office with practical, respectful support.' },
+  { title: 'Multilingual Support', description: 'Service in English, বাংলা, Español, हिंदी, and Français.' },
+  { title: 'Honest & Transparent', description: 'Clear next steps and fees quoted before work begins.' },
+  { title: 'Convenient Communication', description: 'Call, text, WhatsApp, or stop by the office.' },
+  { title: 'Committed To Your Success', description: 'Careful help from first question through completion.' },
 ]
 
 const defaultWho = ['Queens families', 'Independent drivers', 'Immigrant communities', 'Small-business owners', 'Notary clients']
 
-export function HomeTrustSection({ whyHeading, whyItems, whoHeading, whoItems }: HomeTrustSectionProps) {
-  const items = whyItems.length > 0 ? whyItems : defaultTrust
+export function HomeTrustSection({ whyHeading: _whyHeading, whyItems, whoHeading, whoItems }: HomeTrustSectionProps) {
   const audiences = whoItems.length > 0 ? whoItems : defaultWho.map((label) => ({ label }))
+  const items = whyItems.length >= 5 ? whyItems.slice(0, 5) : defaultWhy
 
   return (
     <>
-      <Section id="who-we-help" tone="warm">
+      <Section id="who-we-help" tone="warm" className="py-14 md:py-18">
         <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
           <div>
             <p className="section-kicker">Who we help</p>
@@ -36,30 +35,14 @@ export function HomeTrustSection({ whyHeading, whyItems, whoHeading, whoItems }:
           </div>
         </div>
       </Section>
-      <Section id="why-us">
-        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-          <div className="lg:sticky lg:top-32">
-            <p className="section-kicker">Why choose Nusra</p>
-            <SectionHeading title={whyHeading || 'Professional help with a local point of view'} lead="The details matter. Our role is to make the next step feel clear, calm, and manageable." />
-            <div className="mt-7 inline-flex items-center gap-3 border-l-2 border-brand-lime bg-surface-tint px-4 py-3 text-sm font-bold text-brand-primary">
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-brand-primary text-brand-lime">✓</span>
-              Serving Queens since 2020
-            </div>
-          </div>
-          <ul className="grid gap-4 sm:grid-cols-2">
-            {items.map((item, index) => (
-              <li key={item.title} className="premium-card p-6 transition hover:-translate-y-1">
-                <div className="flex items-start justify-between gap-4">
-                  <span className="grid h-10 w-10 place-items-center rounded-full bg-brand-primary text-sm font-extrabold text-brand-lime">{String(index + 1).padStart(2, '0')}</span>
-                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-secondary">Nusra standard</span>
-                </div>
-                <h3 className="mt-7 text-brand-primary">{item.title}</h3>
-                {item.description ? <p className="mt-2 text-sm leading-6 text-muted">{item.description}</p> : null}
-              </li>
-            ))}
+      <section id="why-us" className="bg-brand-primary py-12 text-white md:py-14">
+        <div className="container-nusra">
+          <div className="mx-auto max-w-2xl text-center"><h2 className="text-2xl text-white md:text-3xl">Why Clients Choose Nusra</h2></div>
+          <ul className="mt-9 grid gap-7 sm:grid-cols-2 lg:grid-cols-5">
+            {items.map((item, index) => <li key={item.title} className="text-center"><span className="mx-auto grid h-10 w-10 place-items-center rounded-full border border-brand-lime/80 text-sm font-bold text-brand-lime">{String(index + 1).padStart(2, '0')}</span><h3 className="mt-4 text-sm leading-5 text-white">{item.title}</h3><p className="mt-2 text-xs leading-5 text-white/60">{item.description}</p></li>)}
           </ul>
         </div>
-      </Section>
+      </section>
     </>
   )
 }
