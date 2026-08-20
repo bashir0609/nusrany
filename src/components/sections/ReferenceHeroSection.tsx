@@ -39,7 +39,7 @@ export function ReferenceHeroSection({ heroImage, settings }: ReferenceHeroSecti
         </div>
         <div className="relative col-span-full mx-0 min-h-[390px] w-full max-w-full overflow-hidden bg-surface-warm lg:col-auto lg:mx-0 lg:min-h-[560px] lg:w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={image?.url ?? '/images/nusra-office.jpg'} alt={image?.alt ?? 'Nusra Tax & Notary office in Queens'} className="h-full min-h-[390px] w-full object-cover lg:min-h-[560px]" />
+          <img src={image?.url ?? '/images/nusra-office-hero.jpg'} alt={image?.alt ?? 'Nusra Tax & Notary office in Queens'} className="h-full min-h-[390px] w-full object-cover lg:min-h-[560px]" />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/35 to-transparent" aria-hidden="true" />
           <div className="absolute left-1/2 top-[28%] -translate-x-1/2 text-center text-brand-primary/80 drop-shadow-[0_2px_10px_rgba(255,255,255,0.7)]" aria-label="Nusra Tax & Notary office branding">
             <span className="mx-auto grid h-16 w-16 place-items-center rounded-xl border-4 border-brand-primary/70 bg-white/70 text-4xl font-bold text-brand-primary shadow-lg">N</span>
