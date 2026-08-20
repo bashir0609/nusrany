@@ -15,9 +15,25 @@ const navLinkClass = 'rounded-sm px-2.5 py-2 text-xs font-semibold text-white/80
 
 export function Header({ settings, services }: HeaderProps) {
   const navServices = services.map((service) => ({ title: service.title, slug: service.slug }))
+  const languages = (settings.languages ?? []).map((language) => language.label).filter(Boolean)
+  const firstOfficeHours = settings.officeHours?.[0]
+  const officeHours = firstOfficeHours
+    ? `${firstOfficeHours.days} · ${firstOfficeHours.hours}`
+    : 'Call for current availability'
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-primary text-white shadow-[0_4px_18px_rgba(16,42,67,0.12)]">
+    <>
+      <div className="border-b border-white/10 bg-brand-primary-deep text-xs text-white/90">
+        <div className="container-nusra grid gap-x-6 gap-y-1 py-2 text-center sm:grid-cols-2 lg:grid-cols-4 lg:items-center lg:py-2.5">
+          <span>Serving {settings.city || 'Queens'} &amp; the surrounding community</span>
+          <span className="text-brand-lime">{languages.join(' • ')}</span>
+          <span>Office hours: <strong className="text-white">{officeHours}</strong></span>
+          <a href={buildTelHref(settings.phone)} className="font-bold text-brand-lime hover:underline">
+            Call {formatDisplayPhone(settings.phone)}
+          </a>
+        </div>
+      </div>
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-primary text-white shadow-[0_4px_18px_rgba(16,42,67,0.12)]">
       <div className="container-nusra flex min-h-[68px] items-center justify-between gap-4">
         <Logo dark />
         <nav aria-label="Main navigation" className="hidden lg:block">
@@ -25,7 +41,7 @@ export function Header({ settings, services }: HeaderProps) {
             <li><Link href="/" className={navLinkClass}>Home</Link></li>
             <li><ServicesNav services={navServices} /></li>
             <li><Link href="/about" className={navLinkClass}>About</Link></li>
-            <li><a href="/#team" className={navLinkClass}>Team</a></li>
+            <li><Link href="/#team" className={navLinkClass}>Team</Link></li>
             <li><Link href="/blog" className={navLinkClass}>Resources</Link></li>
             <li><Link href="/contact" className={navLinkClass}>Contact</Link></li>
           </ul>
@@ -48,6 +64,7 @@ export function Header({ settings, services }: HeaderProps) {
         </div>
         <MobileMenu services={navServices} phone={settings.phone} whatsApp={settings.whatsApp} />
       </div>
-    </header>
+      </header>
+    </>
   )
 }
