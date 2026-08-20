@@ -36,6 +36,7 @@ export default buildConfig({
       titleSuffix: ' — Nusra CMS',
     },
     components: {
+      beforeNavLinks: ['./components/admin/DashboardNavLink'],
       beforeDashboard: ['./components/admin/WelcomeDashboard'],
     },
   },
