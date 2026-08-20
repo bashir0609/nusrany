@@ -22,7 +22,7 @@ export function ReferenceHeroSection({ heroImage, settings }: ReferenceHeroSecti
 
   return (
     <section className="bg-white">
-      <div className="container-nusra-bleed grid items-stretch gap-0 lg:grid-cols-[1fr_1fr] lg:py-0 lg:pl-[calc((100vw-72rem)/2)] lg:pr-0">
+      <div className="container-nusra-bleed grid items-stretch gap-0 lg:grid-cols-[1fr_1fr] lg:py-0">
         <div className="flex flex-col justify-center py-12 pr-0 sm:py-14 lg:py-16 lg:pr-10 xl:pr-16">
           <p className="eyebrow">Experienced. Reliable. Local.</p>
           <h1 className="mt-5 max-w-2xl text-brand-primary">Tax, Notary &amp; Business Support in Queens</h1>

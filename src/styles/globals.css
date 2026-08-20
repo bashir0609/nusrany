@@ -90,7 +90,23 @@
 
   /* Full-width layout for hero bands that must reach both viewport edges. */
   .container-nusra-bleed {
-    @apply w-full px-5 sm:px-8 lg:px-10;
+    width: 100%;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-nusra-bleed {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-nusra-bleed {
+      padding-left: calc((100vw - 72rem) / 2 + 2.5rem);
+      padding-right: 0;
+    }
   }
 
   .card {
