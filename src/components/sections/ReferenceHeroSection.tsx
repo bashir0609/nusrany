@@ -22,10 +22,10 @@ export function ReferenceHeroSection({ heroImage, settings }: ReferenceHeroSecti
 
   return (
     <section className="bg-white">
-      <div className="container-nusra grid items-stretch gap-0 lg:min-h-[560px] lg:grid-cols-[1fr_1fr] lg:py-0">
+      <div className="container-nusra grid items-stretch gap-0 lg:max-w-none lg:grid-cols-[1fr_1fr] lg:py-0 lg:pl-[calc((100vw-72rem)/2)] lg:pr-0">
         <div className="flex flex-col justify-center py-12 pr-0 sm:py-14 lg:py-16 lg:pr-10 xl:pr-16">
           <p className="eyebrow">Experienced. Reliable. Local.</p>
-          <h1 className="mt-5 max-w-2xl text-brand-primary">Trusted Tax, Notary &amp; Business Services for Queens Families and Businesses</h1>
+          <h1 className="mt-5 max-w-2xl text-brand-primary">Tax, Notary &amp; Business Support in Queens</h1>
           <p className="mt-6 max-w-xl text-sm leading-6 text-muted md:text-base">Professional assistance with taxes, notarization, immigration forms, TLC services, and more.</p>
           <p className="mt-1 max-w-xl text-sm leading-6 text-muted md:text-base">We make complex paperwork simple.</p>
           <div className="mt-7 grid max-w-xl grid-cols-2 gap-x-5 gap-y-5 sm:grid-cols-4">
@@ -37,7 +37,7 @@ export function ReferenceHeroSection({ heroImage, settings }: ReferenceHeroSecti
           </div>
           <p className="mt-7 text-xs font-semibold text-muted">We speak: English · বাংলা · Español · हिंदी · Français</p>
         </div>
-        <div className="relative col-span-full -mx-5 min-h-[390px] w-screen max-w-none overflow-hidden bg-surface-warm sm:-mx-8 lg:col-auto lg:mx-0 lg:mr-[calc((100vw-100%)/-2)] lg:w-[50vw] lg:min-h-[560px]">
+        <div className="relative col-span-full mx-0 min-h-[390px] w-full max-w-full overflow-hidden bg-surface-warm lg:col-auto lg:mx-0 lg:min-h-[560px] lg:w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={image?.url ?? '/images/nusra-office.jpg'} alt={image?.alt ?? 'Nusra Tax & Notary office in Queens'} className="h-full min-h-[390px] w-full object-cover lg:min-h-[560px]" />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/35 to-transparent" aria-hidden="true" />
