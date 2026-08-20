@@ -13,7 +13,6 @@ import {
 } from '@/lib/content/queries'
 import { ReferenceHeroSection } from '@/components/sections/ReferenceHeroSection'
 import { StatsStripSection } from '@/components/sections/StatsStripSection'
-import { ProfessionalCredentialsSection } from '@/components/sections/ProfessionalCredentialsSection'
 import { ReferenceServicesSection } from '@/components/sections/ReferenceServicesSection'
 import { HomeTrustSection } from '@/components/sections/HomeTrustSection'
 import { HomeTeamSection } from '@/components/sections/HomeTeamSection'
@@ -57,7 +56,6 @@ export default async function HomePage() {
         settings={settings}
       />
       <StatsStripSection sinceYear={settings.sinceYear} serviceCount={services.length} languageCount={settings.languages?.length ?? 0} />
-      <ProfessionalCredentialsSection settings={settings} />
       <ReferenceServicesSection heading={homepage.servicesHeading} intro={homepage.servicesIntro} services={services} />
       <HomeTrustSection whyHeading={homepage.whyChooseUsHeading} whyItems={homepage.whyChooseUs ?? []} whoHeading={homepage.whoWeHelpHeading} whoItems={homepage.whoWeHelp ?? []} />
       <HomeTeamSection heading={homepage.teamHeading} members={teamMembers} />
