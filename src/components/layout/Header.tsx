@@ -42,7 +42,7 @@ export function Header({ settings, services }: HeaderProps) {
             <li><ServicesNav services={navServices} /></li>
             <li><Link href="/about" className={navLinkClass}>About</Link></li>
             <li><Link href="/#team" className={navLinkClass}>Team</Link></li>
-            <li><Link href="/blog" className={navLinkClass}>Resources</Link></li>
+
             <li><Link href="/contact" className={navLinkClass}>Contact</Link></li>
           </ul>
         </nav>
