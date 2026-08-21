@@ -4,12 +4,11 @@ import { Section } from './Section'
 type ProfessionalCredentialsSectionProps = { settings: SiteSetting }
 
 const credentials = [
-  'Authorized IRS e-file Provider',
-  'PTIN-registered tax preparer',
+  'Serving Queens Since 2020',
+  'IRS e-file Provider',
+  'PTIN Registered Tax Preparer',
   'Certified NY Notary Public',
-  'Bonded · online notarization available',
-  '24/7 TLC Transportation',
-  'Licensed & insured · all five boroughs · wheelchair-accessible',
+  '5 Languages Spoken',
 ]
 
 export function ProfessionalCredentialsSection({ settings: _settings }: ProfessionalCredentialsSectionProps) {
