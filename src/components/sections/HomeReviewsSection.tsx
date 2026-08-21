@@ -15,7 +15,7 @@ export function HomeReviewsSection({ heading, reviews }: HomeReviewsSectionProps
         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {reviews.map((review) => (
             <figure key={review.id} className="premium-card flex h-full flex-col p-6">
-              <div className="text-brand-lime" aria-label="Verified review">★★★★★</div>
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-secondary">Google review</p>
               <blockquote className="mt-5 flex-1 text-lg leading-8 text-brand-primary">“{review.reviewText}”</blockquote>
               <figcaption className="mt-5 text-sm font-bold text-muted">{review.authorName}{review.serviceReceived ? ` · ${review.serviceReceived}` : ''}</figcaption>
             </figure>

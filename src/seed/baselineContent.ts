@@ -415,6 +415,57 @@ export const homepageSeed = {
     'Talk to a real person on our Queens team. We will tell you what is needed, what it costs, and the best next step.',
 }
 
+export const reviewSeeds = [
+  {
+    authorName: 'Maria Foysal Mrittik',
+    serviceReceived: 'Tax & immigration assistance',
+    reviewText: 'Very professional. I had an excellent experience with this tax and immigration firm. The team is highly knowledgeable, professional, and genuinely cares about their clients. They guided me through both my tax filing and immigration process.',
+    sourceName: 'Google',
+    sourceUrl: 'https://www.google.com/maps/contrib/110341913295859781861/reviews?hl=en-GB',
+    displayOrder: 1,
+  },
+  {
+    authorName: 'Sherina Akter',
+    serviceReceived: 'Tax preparation',
+    reviewText: 'Nazifa filed my return. She was very detailed in explaining and organized. She explained the tax law and helped me get a refund when another firm said I was not eligible. I really appreciate the service.',
+    sourceName: 'Google',
+    sourceUrl: 'https://www.google.com/maps/contrib/112102233105018745768/reviews?hl=en-GB',
+    displayOrder: 2,
+  },
+  {
+    authorName: 'Masuma Ak',
+    serviceReceived: 'Notary services',
+    reviewText: 'I went for Notary Public services today, and the experience was fast, efficient, courteous, and incredibly convenient. There was also available street parking.',
+    sourceName: 'Google',
+    sourceUrl: 'https://www.google.com/maps/contrib/103786081304825982245/reviews?hl=en-GB',
+    displayOrder: 3,
+  },
+  {
+    authorName: 'Farzana Samad',
+    serviceReceived: 'Notary services',
+    reviewText: 'Anytime I need something notarized I come here. They are quicker and more efficient than UPS. Great customer service too!',
+    sourceName: 'Google',
+    sourceUrl: 'https://www.google.com/maps/contrib/105665324756153782169/reviews?hl=en-GB',
+    displayOrder: 4,
+  },
+  {
+    authorName: 'md mizan',
+    serviceReceived: 'Immigration forms',
+    reviewText: 'They completed my wife’s N-400 including the waiver. Such a nice service. Thank you Khan Baha’i.',
+    sourceName: 'Google',
+    sourceUrl: 'https://www.google.com/maps/contrib/114863054624414676525/reviews?hl=en-GB',
+    displayOrder: 5,
+  },
+  {
+    authorName: 'MD HANIF SORKAR',
+    serviceReceived: 'TLC services',
+    reviewText: 'I visited with my friend about our TLC license problem. He tried his best and the problem was solved. Thanks.',
+    sourceName: 'Google',
+    sourceUrl: 'https://www.google.com/maps/contrib/102450988778047889666/reviews?hl=en-GB',
+    displayOrder: 6,
+  },
+]
+
 export const aboutPageSeed = {
   headline: 'About Nusra Tax & Notary',
   lead: 'Nusra Tax & Notary (operating under Nusra Trading Inc) is a multilingual Queens-based team helping individuals, families, self-employed workers, and small businesses with tax preparation, immigration forms, notary services, defensive driving, and TLC transportation.',
@@ -503,6 +554,21 @@ async function upsertTeamMember(payload: Payload, seed: (typeof teamSeeds)[numbe
   }
 }
 
+async function upsertReview(payload: Payload, seed: (typeof reviewSeeds)[number]) {
+  const existing = await payload.find({
+    collection: 'reviews',
+    overrideAccess: true,
+    where: { sourceUrl: { equals: seed.sourceUrl } },
+    limit: 1,
+  })
+  const data = { ...seed, published: true }
+  if (existing.docs.length > 0) {
+    await payload.update({ collection: 'reviews', id: existing.docs[0].id, overrideAccess: true, data })
+  } else {
+    await payload.create({ collection: 'reviews', overrideAccess: true, data })
+  }
+}
+
 async function upsertFaq(payload: Payload, seed: (typeof faqSeeds)[number]) {
   const existing = await payload.find({
     collection: 'faqs',
@@ -542,6 +608,7 @@ export async function seedBaselineContent(payload: Payload): Promise<SeedResult>
   for (const seed of teamSeeds) await upsertTeamMember(payload, seed)
   for (const seed of blogCategorySeeds) await upsertBySlug(payload, 'blog-categories', seed)
   for (const seed of faqSeeds) await upsertFaq(payload, seed)
+  for (const seed of reviewSeeds) await upsertReview(payload, seed)
 
   const serviceIds = await resolveServiceIds(payload, serviceSeeds.map((s) => s.slug))
   const teamIds = (
@@ -550,13 +617,16 @@ export async function seedBaselineContent(payload: Payload): Promise<SeedResult>
   const faqIds = (
     await payload.find({ collection: 'faqs', overrideAccess: true, limit: 50 })
   ).docs.map((doc) => doc.id)
+  const reviewIds = (
+    await payload.find({ collection: 'reviews', overrideAccess: true, where: { published: { equals: true } }, limit: 50, sort: 'displayOrder' })
+  ).docs.map((doc) => doc.id)
 
   // Page globals (draftable — publish the seeded baseline)
   const homepage = {
     ...homepageSeed,
     services: serviceIds,
     teamMembers: teamIds,
-    reviews: [],
+    reviews: reviewIds,
     faqs: faqIds,
     _status: 'published' as const,
   }
