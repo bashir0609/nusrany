@@ -15,8 +15,7 @@ export function HomeReviewsSection({ heading, reviews }: HomeReviewsSectionProps
         <div className="mt-10 grid items-start gap-5 md:grid-cols-2 lg:grid-cols-3">
           {reviews.map((review) => (
             <figure key={review.id} className="premium-card relative overflow-hidden p-5 sm:p-6">
-              <div className="flex items-center justify-between gap-4">
-                <p className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-brand-secondary">Google review</p>
+              <div className="flex justify-end">
                 <span aria-label="5 out of 5 stars" className="shrink-0 text-sm tracking-[0.12em] text-brand-lime">★★★★★</span>
               </div>
               <blockquote className="relative mt-5 pl-5 text-[0.95rem] leading-7 text-brand-primary">
