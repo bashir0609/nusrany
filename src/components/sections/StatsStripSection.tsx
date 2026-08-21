@@ -18,7 +18,7 @@ const trustItems: TrustItem[] = [
 
 function TrustIcon({ name }: { name: TrustIconName }) {
   const common = {
-    className: 'h-6 w-6 shrink-0 text-brand-secondary',
+    className: 'h-6 w-6 shrink-0 text-brand-lime',
     fill: 'none',
     stroke: 'currentColor',
     strokeLinecap: 'round' as const,
@@ -52,15 +52,15 @@ function TrustIcon({ name }: { name: TrustIconName }) {
 
 export function StatsStripSection({ sinceYear: _sinceYear, serviceCount: _serviceCount, languageCount: _languageCount }: StatsStripSectionProps) {
   return (
-    <section className="border-y border-border bg-surface-warm" aria-label="Nusra trust and credentials">
+    <section className="border-y border-white/10 bg-brand-primary" aria-label="Nusra trust and credentials">
       <div className="container-nusra py-7 md:py-8">
         <div className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
           {trustItems.map((item) => (
             <div key={item.title} className="flex items-start gap-3">
               <TrustIcon name={item.icon} />
               <div className="min-w-0">
-                <p className="text-sm font-bold leading-5 text-brand-primary">{item.title}</p>
-                <p className="mt-1 text-xs leading-5 text-muted">{item.detail}</p>
+                <p className="text-sm font-bold leading-5 text-white">{item.title}</p>
+                <p className="mt-1 text-xs leading-5 text-white/65">{item.detail}</p>
               </div>
             </div>
           ))}
