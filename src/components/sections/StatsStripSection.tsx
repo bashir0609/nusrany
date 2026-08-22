@@ -3,10 +3,11 @@ import type { SiteSetting } from '@/payload-types'
 type StatsStripSectionProps = { settings: SiteSetting }
 
 export function StatsStripSection({ settings }: StatsStripSectionProps) {
-  const credentials = (settings.verifiedCredentialLabels ?? []).map((item) => item.label).filter(Boolean)
+  const servingTitle = `Serving Queens Since ${settings.sinceYear || '2020'}`
+  const credentials = (settings.verifiedCredentialLabels ?? []).map((item) => item.label).filter((label): label is string => Boolean(label) && label !== servingTitle)
   const languages = (settings.languages ?? []).map((item) => item.label).filter(Boolean)
   const items = [
-    { title: `Serving Queens Since ${settings.sinceYear || '2020'}`, detail: 'A local office for families and businesses.' },
+    { title: servingTitle, detail: 'A local office for families and businesses.' },
     ...(credentials.length > 0 ? credentials.map((label) => ({ title: label, detail: 'Verified professional credential.' })) : [
       { title: 'Authorized IRS e-file Provider', detail: 'Professional tax filing support.' },
       { title: 'PTIN Registered Tax Preparer', detail: 'Careful, documented tax assistance.' },

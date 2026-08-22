@@ -26,6 +26,27 @@ import { SiteSettings } from './globals/SiteSettings'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+function normalizeDatabaseUrl(connectionString: string) {
+  if (!connectionString) return connectionString
+
+  try {
+    const url = new URL(connectionString)
+    const sslMode = url.searchParams.get('sslmode')
+
+    if (sslMode === 'prefer' || sslMode === 'verify-ca') {
+      url.searchParams.set('sslmode', 'verify-full')
+    } else if (sslMode === 'require') {
+      // Preserve the current `require` behavior while opting into the
+      // compatibility path before pg-connection-string changes defaults.
+      url.searchParams.set('uselibpqcompat', 'true')
+    }
+
+    return url.toString()
+  } catch {
+    return connectionString
+  }
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -50,7 +71,7 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URL || '',
+      connectionString: normalizeDatabaseUrl(process.env.DATABASE_URL || ''),
     },
   }),
   sharp,

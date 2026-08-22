@@ -9,11 +9,11 @@ needs sign-off before launch. The plan directive is: *hide until verified* for e
 
 | # | Item | Where it renders | Current state | Action before launch |
 |---|------|------------------|---------------|----------------------|
-| 1 | Owner title ("Owner, Nusra Trading Inc.") | About, Team | Seeded from verification sheet (role = Owner) | Confirm exact wording with client |
+| 1 | CEO title ("CEO, Nusra Trading Inc.") | About, Team | Seeded and confirmed as Aminul Islam Khan, CEO | Keep the exact confirmed wording |
 | 2 | Current office hours (Mon–Fri 11:30 AM–5:30 PM) | Contact, homepage office section, footer | Verification sheet confirms values; **seed leaves CMS field empty** so the section hides until entered | Client enters hours in Site Settings (one field) |
 | 3 | Final logo file | Header/footer | Approved lime/teal arrow mark exists in `redesign/`; brand colors extracted (`#0f2b46`, `#12707a`, `#189090`, `#A8C838`, `#e8922a`) | Upload final logo to Media in CMS; replace token values with exact logo-extracted values |
 | 4 | IRS e-file wording ("Authorized IRS e-file Provider") | About credentials, trust strip | Verification sheet: yes, authorized. **Seed leaves credential labels empty** | Enter exact approved wording in CMS; verify EFIN/efile status with client |
-| 5 | PTIN wording if used | About, service pages | Verification sheet: Aminul Khan holds a current PTIN | Confirm exact wording (currently not rendered) |
+| 5 | PTIN wording if used | About, service pages | Verification sheet: Aminul Islam Khan holds a current PTIN | Confirm exact wording (currently not rendered) |
 | 6 | NY Notary wording (certified, bonded, online notarization) | Notary service page, About | Verification sheet confirms | Confirm exact wording |
 | 7 | Defensive-driving provider/course wording | Defensive driving page | Approved wording: "through our approved course-provider relationship" (open item: PIRP provider name) | Do NOT publish another company's name/logo until provider confirmed |
 | 8 | TLC-related claims | TLC service page, About | Verification sheet confirms Nusra Trading Inc. is licensed/insured/TLC-authorized | Supporting licensing documentation placed in project records before launch |

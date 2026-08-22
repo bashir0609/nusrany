@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import type { Service, SiteSetting } from '@/payload-types'
 import { buildTelHref, formatDisplayPhone } from '@/lib/site/contactLinks'
 import { Logo } from './Logo'
@@ -14,6 +17,8 @@ type HeaderProps = {
 const navLinkClass = 'rounded-sm px-2.5 py-2 text-xs font-semibold text-white/80 transition hover:bg-white/10 hover:text-white'
 
 export function Header({ settings, services }: HeaderProps) {
+  const pathname = usePathname()
+  const isHome = pathname === '/'
   const navServices = services.map((service) => ({ title: service.title, slug: service.slug }))
   const languages = (settings.languages ?? []).map((language) => language.label).filter(Boolean)
   const firstOfficeHours = settings.officeHours?.[0]
@@ -22,8 +27,8 @@ export function Header({ settings, services }: HeaderProps) {
     : 'Call for current availability'
 
   return (
-    <>
-      <div className="border-b border-white/10 bg-brand-primary-deep text-xs text-white/90">
+    <div className={isHome ? 'absolute inset-x-0 top-0 z-50 text-white' : 'relative z-50'}>
+      <div className="border-b border-white/10 bg-brand-primary-deep/90 text-xs text-white/90 backdrop-blur-sm">
         <div className="container-nusra grid gap-x-6 gap-y-1 py-2 text-center sm:grid-cols-2 lg:grid-cols-4 lg:items-center lg:py-2.5">
           <span>Serving {settings.city || 'Queens'} &amp; the surrounding community</span>
           <span className="text-brand-lime">{languages.join(' • ')}</span>
@@ -33,7 +38,7 @@ export function Header({ settings, services }: HeaderProps) {
           </a>
         </div>
       </div>
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-primary text-white shadow-[0_4px_18px_rgba(16,42,67,0.12)]">
+      <header className={`${isHome ? 'border-white/10 bg-brand-primary/70 backdrop-blur-sm' : 'sticky top-0 border-white/10 bg-brand-primary shadow-[0_4px_18px_rgba(16,42,67,0.12)]'} border-b text-white` }>
       <div className="container-nusra flex min-h-[68px] items-center justify-between gap-4">
         <Logo dark />
         <nav aria-label="Main navigation" className="hidden lg:block">
@@ -55,6 +60,6 @@ export function Header({ settings, services }: HeaderProps) {
         <MobileMenu services={navServices} phone={settings.phone} whatsApp={settings.whatsApp} />
       </div>
       </header>
-    </>
+    </div>
   )
 }

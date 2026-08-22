@@ -14,7 +14,7 @@ This sheet is the gate. Every fact below is owner-confirmed and may be published
 | Public brand | **Nusra Tax & Notary** (visible site-wide) |
 | Legal name | **Nusra Trading Inc.** (footer + policy pages: "Nusra Tax & Notary is operated by Nusra Trading Inc.") |
 | Domain | nusrany.com |
-| Owner | **Aminul Khan** (title: Owner) |
+| Owner | **Aminul Islam Khan** (title: CEO) |
 | Year established | **2020** |
 | Primary phone (call & text) | **(347) 740-9782** |
 | Secondary phone + WhatsApp | **(929) 672-0255** |
@@ -35,7 +35,7 @@ This sheet is the gate. Every fact below is owner-confirmed and may be published
 |---|---|---|---|
 | 1 | Official website brand | **Nusra Tax & Notary** (domain: Nusra NY / nusrany.com). No other name. | ✅ VERIFIED |
 | 2 | Legal business name | **Nusra Trading Inc.** (exact registered name) | ✅ VERIFIED |
-| 3 | Owner / primary contact | **Aminul Khan** — title: **Owner** | ✅ VERIFIED |
+| 3 | Owner / primary contact | **Aminul Islam Khan** — title: **CEO** | ✅ VERIFIED |
 | 4 | Your Best Ride Inc. | Separate company — **must NOT appear** on the Nusra website | ✅ VERIFIED |
 | — | Year established | **2020** (trust strip: "Since 2020") | ✅ VERIFIED |
 | — | Service area | Queens + surrounding community; all five NYC boroughs for TLC transportation | ✅ VERIFIED |
@@ -72,8 +72,8 @@ This sheet is the gate. Every fact below is owner-confirmed and may be published
 | # | Field | Confirmed value | Status |
 |---|---|---|---|
 | 13 | IRS e-file Provider | **Yes — Authorized IRS e-file Provider** | ✅ VERIFIED |
-| 14 | PTIN | **Yes — Aminul Khan holds a current PTIN** | ✅ VERIFIED |
-| 15 | NY Notary Public | **Yes — Aminul Khan is a commissioned NY Notary Public** | ✅ VERIFIED |
+| 14 | PTIN | **Yes — Aminul Islam Khan holds a current PTIN** | ✅ VERIFIED |
+| 15 | NY Notary Public | **Yes — Aminul Islam Khan is a commissioned NY Notary Public** | ✅ VERIFIED |
 | 16 | Notary details | Certified ✅ · Bonded ✅ · Authorized for **online notarization** ✅ (plus mobile notary) | ✅ VERIFIED |
 | 17 | Defensive-driving instructor | **Yes — approved defensive-driving instructor** | ✅ VERIFIED |
 | 18 | PIRP course provider | ❓ **UNANSWERED** — use "approved course-provider relationship" wording until confirmed (open item 1) | ❓ OPEN |
@@ -116,7 +116,7 @@ This sheet is the gate. Every fact below is owner-confirmed and may be published
 |---|---|---|---|
 | 36 | Year business started | **2020** | ✅ VERIFIED |
 | 37 | Languages | **English, বাংলা, Español, हिंदी, French** | ✅ VERIFIED |
-| 38 | Show Aminul Khan's photo | **Yes** | ✅ VERIFIED |
+| 38 | Show Aminul Islam Khan's photo | **Yes** | ✅ VERIFIED |
 | 39 | Office photographs | **Currently none available** | ✅ VERIFIED |
 | 40 | Genuine customer reviews to display | **Yes — permission granted** (review texts/links to be supplied) | ✅ VERIFIED |
 | 41 | Social/online presence | Google Business Profile: **no** · Facebook: **no** · Instagram: **no** · WhatsApp: +1 (929) 672-0255 · Online booking link: **no** | ✅ VERIFIED |
