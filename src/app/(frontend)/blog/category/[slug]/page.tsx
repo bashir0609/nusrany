@@ -11,9 +11,11 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
+  const posts = await getPostsByCategory(slug, 1)
   return buildMetadata({
     title: slug.replace(/-/g, ' '),
     path: `/blog/category/${slug}`,
+    noindex: posts.length === 0,
   })
 }
 

@@ -23,7 +23,7 @@ export function Footer({ settings, services }: FooterProps) {
 
   return (
     <footer className="border-t border-border bg-brand-primary text-white">
-      <div className="container-nusra grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="container-nusra grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-5">
         <div>
           <Logo dark />
           {settings.footerText ? <p className="mt-4 text-sm text-white/80">{settings.footerText}</p> : null}
@@ -82,6 +82,16 @@ export function Footer({ settings, services }: FooterProps) {
                 </Link>
               </li>
             ))}
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="text-sm font-bold uppercase tracking-wide text-white/60">Resources</h2>
+          <ul className="mt-4 space-y-2">
+            <li><Link href="/blog" className="text-white/90 hover:text-white hover:underline">Blog</Link></li>
+            <li><Link href="/#faq" className="text-white/90 hover:text-white hover:underline">FAQs</Link></li>
+            <li><Link href="/#reviews" className="text-white/90 hover:text-white hover:underline">Reviews</Link></li>
+            <li><Link href="/#location" className="text-white/90 hover:text-white hover:underline">Location</Link></li>
           </ul>
         </div>
 

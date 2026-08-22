@@ -7,7 +7,7 @@ export const ContactPage: GlobalConfig = {
   slug: 'contact-page',
   label: 'Contact Page',
   admin: {
-    group: 'Pages',
+    group: 'Website',
     preview: () => `/api/preview?secret=${process.env.PREVIEW_SECRET}&path=/contact`,
   },
   access: {

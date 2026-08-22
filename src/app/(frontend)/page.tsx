@@ -55,7 +55,7 @@ export default async function HomePage() {
         heroImage={homepage.heroImage}
         settings={settings}
       />
-      <StatsStripSection sinceYear={settings.sinceYear} serviceCount={services.length} languageCount={settings.languages?.length ?? 0} />
+      <StatsStripSection settings={settings} />
       <ReferenceServicesSection heading={homepage.servicesHeading} intro={homepage.servicesIntro} services={services} />
       <HomeTrustSection whyHeading={homepage.whyChooseUsHeading} whyItems={homepage.whyChooseUs ?? []} whoHeading={homepage.whoWeHelpHeading} whoItems={homepage.whoWeHelp ?? []} />
       <HomeTeamSection heading={homepage.teamHeading} members={teamMembers} />

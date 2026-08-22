@@ -1,17 +1,22 @@
 import { describe, expect, it } from 'vitest'
 import { buildMetadata } from '@/lib/seo/metadata'
 
-const PROD = 'https://nusrany.com'
+const PROD = 'https://www.nusrany.com'
 
 describe('buildMetadata', () => {
   it('uses the canonical production origin', () => {
     const meta = buildMetadata({ title: 'Tax Preparation', siteUrl: PROD, path: '/tax-preparation' })
-    expect(meta.alternates?.canonical).toBe('https://nusrany.com/tax-preparation')
+    expect(meta.alternates?.canonical).toBe('https://www.nusrany.com/tax-preparation')
   })
 
   it('uses the origin as the canonical for the homepage', () => {
     const meta = buildMetadata({ title: 'Home', siteUrl: PROD, path: '/' })
-    expect(meta.alternates?.canonical).toBe('https://nusrany.com')
+    expect(meta.alternates?.canonical).toBe('https://www.nusrany.com')
+  })
+
+  it('defaults SEO URLs to the production www origin', () => {
+    const meta = buildMetadata({ title: 'Contact' })
+    expect(meta.alternates?.canonical).toBe('https://www.nusrany.com')
   })
 
   it('lets the CMS SEO title override the page title', () => {

@@ -17,7 +17,7 @@ export const Services: CollectionConfig = {
   slug: 'services',
   admin: {
     useAsTitle: 'title',
-    group: 'Content',
+    group: 'Website',
     defaultColumns: ['title', 'slug', 'displayOrder', '_status', 'updatedAt'],
     preview: ({ slug }) =>
       slug

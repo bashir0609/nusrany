@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import type { Service, SiteSetting } from '@/payload-types'
-import { buildTelHref, buildWhatsAppHref, formatDisplayPhone } from '@/lib/site/contactLinks'
+import { buildTelHref, formatDisplayPhone } from '@/lib/site/contactLinks'
 import { Logo } from './Logo'
 import { MobileMenu } from './MobileMenu'
 import { ServicesNav } from './ServicesNav'
-import { PhoneIcon, WhatsAppIcon } from '@/components/ui/icons'
+import { PhoneIcon } from '@/components/ui/icons'
 
 type HeaderProps = {
   settings: SiteSetting
@@ -38,29 +38,19 @@ export function Header({ settings, services }: HeaderProps) {
         <Logo dark />
         <nav aria-label="Main navigation" className="hidden lg:block">
           <ul className="flex items-center gap-0.5">
-            <li><Link href="/" className={navLinkClass}>Home</Link></li>
             <li><ServicesNav services={navServices} /></li>
             <li><Link href="/about" className={navLinkClass}>About</Link></li>
+            <li><Link href="/#why-us" className={navLinkClass}>Why Choose Us</Link></li>
             <li><Link href="/#team" className={navLinkClass}>Team</Link></li>
-
             <li><Link href="/contact" className={navLinkClass}>Contact</Link></li>
           </ul>
         </nav>
-        <div className="hidden items-center gap-2 xl:flex">
-          <a href={buildTelHref(settings.phone)} className="inline-flex min-h-9 shrink-0 items-center gap-1.5 whitespace-nowrap px-2 py-2 text-xs font-semibold text-white/85 hover:text-white">
+        <div className="hidden items-center gap-3 lg:flex">
+          <a href={buildTelHref(settings.phone)} className="inline-flex min-h-9 items-center gap-1.5 whitespace-nowrap px-2 py-2 text-xs font-semibold text-white/85 hover:text-white">
             <PhoneIcon className="h-3.5 w-3.5" aria-hidden="true" />
             {formatDisplayPhone(settings.phone)}
           </a>
-          <a href={buildWhatsAppHref(settings.whatsApp)} className="inline-flex min-h-9 items-center gap-1.5 rounded-sm bg-[#1f9d61] px-3 py-2 text-xs font-bold text-white hover:bg-[#168250]" aria-label={settings.whatsAppLabel || 'WhatsApp'}>
-            <WhatsAppIcon className="h-3.5 w-3.5" aria-hidden="true" />
-            WhatsApp
-          </a>
-        </div>
-        <div className="hidden items-center gap-2 lg:flex xl:hidden">
-          <a href={buildWhatsAppHref(settings.whatsApp)} className="inline-flex min-h-9 items-center gap-1.5 rounded-sm bg-[#1f9d61] px-3 py-2 text-xs font-bold text-white" aria-label={settings.whatsAppLabel || 'WhatsApp'}>
-            <WhatsAppIcon className="h-3.5 w-3.5" aria-hidden="true" />
-            WhatsApp
-          </a>
+          <Link href="/contact" className="premium-button premium-button-lime min-h-9 px-4 py-2 text-xs">Book Appointment</Link>
         </div>
         <MobileMenu services={navServices} phone={settings.phone} whatsApp={settings.whatsApp} />
       </div>

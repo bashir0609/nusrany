@@ -5,7 +5,7 @@ export const FAQs: CollectionConfig = {
   slug: 'faqs',
   admin: {
     useAsTitle: 'question',
-    group: 'Content',
+    group: 'Website',
     defaultColumns: ['question', 'published', 'displayOrder'],
   },
   access: {

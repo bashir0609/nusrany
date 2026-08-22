@@ -7,6 +7,7 @@ import { Footer } from '@/components/layout/Footer'
 import { MobileContactBar } from '@/components/layout/MobileContactBar'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 import { getPublishedServices, getSiteSettings } from '@/lib/content/queries'
+import { PUBLIC_SITE_URL } from '@/lib/seo/siteUrl'
 
 // v1: render CMS content per request so published changes are visible on the
 // next request and Local API reads are never frozen at build time.
@@ -19,7 +20,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL || 'https://nusrany.com'),
+  metadataBase: new URL(PUBLIC_SITE_URL),
   description: 'Nusra Tax & Notary — tax preparation, notary, immigration forms, defensive driving and TLC transportation in Queens, NY.',
   title: {
     default: 'Nusra Tax & Notary | Queens, NY',
@@ -42,7 +43,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <Header settings={settings} services={services} />
         <main id="main" className="min-h-screen">{children}</main>
         <Footer settings={settings} services={services} />
-        <MobileContactBar settings={settings} />
+        <MobileContactBar phone={settings.phone} whatsApp={settings.whatsApp} callNowLabel={settings.callNowLabel} whatsAppLabel={settings.whatsAppLabel} />
       </body>
     </html>
   )

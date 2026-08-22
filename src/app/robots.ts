@@ -1,7 +1,8 @@
 import type { MetadataRoute } from 'next'
+import { absoluteSiteUrl } from '@/lib/seo/siteUrl'
 
 export default function robots(): MetadataRoute.Robots {
-  const base = (process.env.SITE_URL || 'https://nusrany.com').replace(/\/+$/, '')
+
   return {
     rules: [
       {
@@ -10,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin/', '/api/'],
       },
     ],
-    sitemap: `${base}/sitemap.xml`,
+    sitemap: absoluteSiteUrl('/sitemap.xml'),
   }
 }

@@ -7,7 +7,7 @@ export const Homepage: GlobalConfig = {
   slug: 'homepage',
   label: 'Homepage',
   admin: {
-    group: 'Pages',
+    group: 'Website',
     preview: () => `/api/preview?secret=${process.env.PREVIEW_SECRET}&path=/`,
   },
   access: {

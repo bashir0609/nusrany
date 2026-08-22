@@ -4,6 +4,7 @@ export const Media: CollectionConfig = {
   slug: 'media',
   admin: {
     useAsTitle: 'alt',
+    group: 'Resources',
   },
   access: {
     read: () => true,

@@ -17,6 +17,12 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
   const firstLinkRef = useRef<HTMLAnchorElement>(null)
 
   useEffect(() => {
+    const openFromQuickBar = () => setOpen(true)
+    window.addEventListener('nusra:open-menu', openFromQuickBar)
+    return () => window.removeEventListener('nusra:open-menu', openFromQuickBar)
+  }, [])
+
+  useEffect(() => {
     if (!open) return
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
@@ -88,18 +94,18 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
                 </ul>
               </li>
               <li>
+                <Link href="/#why-us" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
+                  Why Choose Us
+                </Link>
+              </li>
+              <li>
                 <Link href="/#team" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
                   Team
                 </Link>
               </li>
               <li>
-                <Link href="/blog" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
-                  Resources
-                </Link>
-              </li>
-              <li>
-                <Link href="/#location" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
-                  Location
+                <Link href="/contact" onClick={() => setOpen(false)} className="block py-4 text-lg font-bold text-brand-primary">
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -121,7 +127,7 @@ export function MobileMenu({ services, phone, whatsApp }: MobileMenuProps) {
                 onClick={() => setOpen(false)}
                 className="premium-button premium-button-secondary"
               >
-                Request Assistance
+                Book Appointment
               </Link>
             </div>
           </nav>

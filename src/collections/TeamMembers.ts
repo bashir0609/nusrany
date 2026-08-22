@@ -7,7 +7,7 @@ export const TeamMembers: CollectionConfig = {
   slug: 'team-members',
   admin: {
     useAsTitle: 'name',
-    group: 'Content',
+    group: 'Website',
     defaultColumns: ['name', 'role', 'displayOrder', '_status', 'updatedAt'],
     preview: () => `/api/preview?secret=${process.env.PREVIEW_SECRET}&path=/team`,
   },

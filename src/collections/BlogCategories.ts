@@ -6,7 +6,7 @@ export const BlogCategories: CollectionConfig = {
   slug: 'blog-categories',
   admin: {
     useAsTitle: 'title',
-    group: 'Blog',
+    group: 'Resources',
   },
   access: {
     read: () => true,

@@ -7,7 +7,7 @@ export const AboutPage: GlobalConfig = {
   slug: 'about-page',
   label: 'About Page',
   admin: {
-    group: 'Pages',
+    group: 'Website',
     preview: () => `/api/preview?secret=${process.env.PREVIEW_SECRET}&path=/about`,
   },
   access: {

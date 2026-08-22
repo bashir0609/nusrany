@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { PUBLIC_SITE_URL } from './siteUrl'
 
 const FALLBACK_TITLE = 'Nusra Tax & Notary | Queens, NY'
 
@@ -23,7 +24,7 @@ export function buildMetadata({
   description,
   imageUrl,
   path = '/',
-  siteUrl = process.env.SITE_URL || 'https://nusrany.com',
+  siteUrl = PUBLIC_SITE_URL,
   noindex = false,
 }: BuildMetadataArgs): Metadata {
   const base = siteUrl.replace(/\/+$/, '')

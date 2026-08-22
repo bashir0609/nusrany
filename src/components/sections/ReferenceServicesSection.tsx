@@ -2,53 +2,66 @@ import Link from 'next/link'
 import type { Service } from '@/payload-types'
 import { Section } from './Section'
 
-type ReferenceServicesSectionProps = { heading?: string | null; intro?: string | null; services: Service[] }
+ type ReferenceServicesSectionProps = { heading?: string | null; intro?: string | null; services: Service[] }
 
-const fallbackServices = [
-  ['Tax Preparation', 'Individuals & businesses tax returns, planning, and year-round support.'],
-  ['Notary Services', 'Fast, reliable notarization for all your important documents.'],
-  ['Immigration Forms', 'Assistance with USCIS forms and immigration documents.'],
-  ['TLC & Driver Services', 'TLC renewals, insurance, defensive driving, and more for drivers.'],
-  ['Business Services', 'Business formation, EIN, bookkeeping, and ongoing support.'],
-  ['More Services', 'Transportation, affidavits, power of attorney, and more.'],
-]
-
-const localArtwork: Record<string, string> = {
-  'tax preparation': '/images/nusra-team-consultation.jpg',
-  'notary services': '/images/notary-service.png',
-  'notary public': '/images/notary-service.png',
-  'immigration form assistance': '/images/team-office-conversation.jpg',
-  'immigration forms': '/images/team-office-conversation.jpg',
-  'auto insurance': '/images/auto-insurance-service.png',
-  'auto insurance services': '/images/auto-insurance-service.png',
-  'defensive driving': '/images/defensive-driving-service.png',
-  'defensive driving course': '/images/defensive-driving-service.png',
-  'tlc & driver services': '/images/auto-insurance-service.png',
-  'tlc & transportation': '/images/auto-insurance-service.png',
-  'business services': '/images/office-workspace.jpg',
-  'more services': '/images/nusra-office.jpg',
+type ServiceGroup = {
+  title: string
+  description: string
+  keywords: string[]
 }
 
-export function ReferenceServicesSection({ heading: _heading, intro: _intro, services }: ReferenceServicesSectionProps) {
-  const cards = services.slice(0, 6)
+const groups: ServiceGroup[] = [
+  { title: 'Tax & Financial Services', description: 'Thoughtful support for personal, self-employed, and small-business tax needs.', keywords: ['tax', 'business'] },
+  { title: 'Documents & Notary', description: 'Careful help with notarization and immigration-supporting paperwork.', keywords: ['notary', 'immigration', 'document'] },
+  { title: 'Transportation Services', description: 'Practical support for drivers, TLC owners, and transportation needs.', keywords: ['tlc', 'transport', 'defensive', 'driving'] },
+  { title: 'Business Services', description: 'Speak with our team about business formation, staffing, and ongoing support.', keywords: ['business', 'formation', 'staffing', 'import'] },
+]
+
+function matches(service: Service, group: ServiceGroup) {
+  const text = `${service.title} ${service.shortDescription ?? ''}`.toLowerCase()
+  return group.keywords.some((keyword) => text.includes(keyword))
+}
+
+export function ReferenceServicesSection({ heading, intro, services }: ReferenceServicesSectionProps) {
+  const assigned = new Set<number>()
+  const serviceGroups = groups.map((group) => ({
+    ...group,
+    services: services.filter((service) => {
+      const matched = matches(service, group) && !assigned.has(service.id)
+      if (matched) assigned.add(service.id)
+      return matched
+    }),
+  }))
+
   return (
-    <Section id="services" className="py-14 md:py-20">
-      <div className="mx-auto max-w-2xl text-center"><h2 className="text-brand-primary">How We Can Help You</h2><p className="mt-3 text-sm text-muted md:text-base">Comprehensive services tailored to your needs.</p></div>
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {(cards.length > 0 ? cards : fallbackServices).map((item, index) => {
-          const isService = typeof item === 'object' && 'slug' in item
-          const title = isService ? item.title : item[0]
-          const description = isService ? item.shortDescription : item[1]
-          const href = isService ? `/${item.slug}` : '/services'
-          const cmsImage = isService && typeof item.heroImage === 'object' && item.heroImage ? item.heroImage : null
-          const imageSrc = cmsImage?.url ?? localArtwork[title.toLowerCase()]
-          return <Link key={isService ? item.slug : title} href={href} className="group flex min-h-[205px] flex-col border border-border/75 bg-white p-6 shadow-[0_8px_24px_rgba(16,42,67,0.04)] transition hover:-translate-y-1 hover:border-brand-secondary/35 hover:shadow-[0_16px_30px_rgba(16,42,67,0.09)]">
-            <div className="flex items-start justify-between gap-4"><span className="grid h-10 w-10 place-items-center rounded-md bg-surface-tint p-1.5">{imageSrc ? <img src={imageSrc} alt="" className="h-full w-full rounded object-cover" /> : <span className="text-lg font-bold text-brand-secondary">{String(index + 1).padStart(2, '0')}</span>}</span><span className="text-xs font-semibold tracking-[0.16em] text-brand-lime">0{index + 1}</span></div>
-            <h3 className="mt-6 text-base text-brand-primary group-hover:text-brand-secondary">{title}</h3>
-            <p className="mt-2 line-clamp-3 text-sm leading-5 text-muted">{description}</p>
-            <span className="mt-auto pt-5 text-xs font-bold text-brand-primary">Learn More <span aria-hidden="true">→</span></span>
-          </Link>
-        })}
+    <Section id="services" className="py-16 md:py-24">
+      <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+        <div>
+          <p className="section-kicker">Services</p>
+          <h2 className="text-brand-primary">{heading || 'Professional support, thoughtfully organized'}</h2>
+        </div>
+        <p className="max-w-2xl text-base leading-7 text-muted">{intro || 'From tax preparation and notarization to driver and business support, get clear guidance from a real local team.'}</p>
+      </div>
+      <div className="mt-12 grid gap-6 md:grid-cols-2">
+        {serviceGroups.map((group) => (
+          <section key={group.title} className="border-t-2 border-brand-lime bg-surface-warm p-6 md:p-7">
+            <h3 className="text-xl text-brand-primary">{group.title}</h3>
+            <p className="mt-2 text-sm leading-6 text-muted">{group.description}</p>
+            {group.services.length > 0 ? (
+              <ul className="mt-6 divide-y divide-border/80">
+                {group.services.map((service) => (
+                  <li key={service.slug}>
+                    <Link href={`/${service.slug}`} className="group flex items-center justify-between gap-4 py-4 text-sm font-bold text-brand-primary hover:text-brand-secondary">
+                      <span>{service.title}</span><span aria-hidden="true" className="text-brand-lime transition group-hover:translate-x-1">→</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <Link href="/contact" className="mt-6 inline-flex text-sm font-bold text-brand-secondary underline decoration-brand-lime underline-offset-4 hover:text-brand-primary">Ask about business support →</Link>
+            )}
+          </section>
+        ))}
       </div>
     </Section>
   )

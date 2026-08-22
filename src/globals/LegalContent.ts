@@ -6,7 +6,7 @@ export const LegalContent: GlobalConfig = {
   slug: 'legal-content',
   label: 'Legal Content',
   admin: {
-    group: 'Pages',
+    group: 'Website',
     description:
       'Client-review copy. Content here is general information, not legal advice. Do not display an attorney-review claim.',
     preview: ({ path }) =>

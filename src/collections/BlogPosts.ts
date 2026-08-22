@@ -9,7 +9,7 @@ export const BlogPosts: CollectionConfig = {
   slug: 'blog-posts',
   admin: {
     useAsTitle: 'title',
-    group: 'Blog',
+    group: 'Resources',
     defaultColumns: ['title', 'category', 'publishedAt', '_status', 'updatedAt'],
     preview: ({ slug }) =>
       slug

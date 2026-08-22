@@ -10,7 +10,7 @@ type HomeReviewsSectionProps = {
 export function HomeReviewsSection({ heading, reviews }: HomeReviewsSectionProps) {
   return (
     <Section id="reviews">
-      <SectionHeading title={heading || 'Trusted by Queens families & businesses'} lead="We are collecting verified client feedback and will share it here as it becomes available." />
+      <SectionHeading title={heading || 'Trusted by Queens families & businesses'} lead={reviews.length > 0 ? 'Hear directly from clients who have worked with our local team.' : 'Verified reviews will appear here once the team has permission to publish them.'} />
       {reviews.length > 0 ? (
         <div className="mt-10 grid items-start gap-5 md:grid-cols-2 lg:grid-cols-3">
           {reviews.map((review) => (

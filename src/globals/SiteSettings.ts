@@ -5,7 +5,7 @@ export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: 'Site Settings',
   admin: {
-    group: 'Settings',
+    group: 'Business',
     description:
       'Business details shown across the site. Changes appear immediately — no publishing workflow needed for contact information.',
   },

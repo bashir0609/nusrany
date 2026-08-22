@@ -5,7 +5,7 @@ export const Inquiries: CollectionConfig = {
   slug: 'inquiries',
   admin: {
     useAsTitle: 'name',
-    group: 'Inbox',
+    group: 'Business',
     defaultColumns: ['name', 'serviceLabelSnapshot', 'preferredContactMethod', 'submittedAt', 'status', 'notificationEmailStatus'],
     description:
       'Contact-request inquiries submitted through the public form. Do not enter Social Security numbers, passport numbers, tax documents, immigration documents, banking details, or other highly sensitive personal information here.',
