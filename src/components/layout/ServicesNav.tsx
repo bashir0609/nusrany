@@ -11,6 +11,26 @@ export function ServicesNav({ services }: ServicesNavProps) {
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  function cancelClose() {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current)
+      closeTimerRef.current = null
+    }
+  }
+
+  function scheduleClose() {
+    cancelClose()
+    closeTimerRef.current = setTimeout(() => {
+      setOpen(false)
+      closeTimerRef.current = null
+    }, 250)
+  }
+
+  useEffect(() => {
+    return () => cancelClose()
+  }, [])
 
   useEffect(() => {
     if (!open) return
@@ -32,13 +52,13 @@ export function ServicesNav({ services }: ServicesNavProps) {
   }, [open])
 
   return (
-    <div ref={rootRef} className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+    <div ref={rootRef} className="relative" onMouseEnter={() => { cancelClose(); setOpen(true) }} onMouseLeave={scheduleClose}>
       <button
         ref={buttonRef}
         type="button"
         aria-expanded={open}
         aria-haspopup="true"
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => { cancelClose(); setOpen((value) => !value) }}
         className="flex items-center gap-1 rounded-sm px-2.5 py-2 text-xs font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
       >
         Services
