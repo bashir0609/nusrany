@@ -28,9 +28,8 @@ export function HomeTeamSection({ heading, members }: HomeTeamSectionProps) {
       <article className="mt-12 grid overflow-hidden border border-border bg-surface-warm md:grid-cols-[0.8fr_1.2fr]">
         <Image src={photo?.url ?? '/images/aminul-islam-khan.png'} alt={photo?.alt ?? lead.name} width={900} height={720} className="h-full min-h-[320px] w-full object-cover" />
         <div className="p-7 md:p-10">
-          <p className="eyebrow">Owner · Nusra Trading Inc.</p>
-          <h3 className="mt-3 text-3xl text-brand-primary">{lead.name || 'Aminul Islam Khan'}</h3>
-          <p className="mt-2 text-sm font-bold text-brand-secondary">{lead.role || 'Owner — Nusra Trading Inc.'}</p>
+          <h3 className="text-3xl text-brand-primary">{lead.name || 'Aminul Islam Khan'}</h3>
+          <p className="mt-2 text-sm font-bold text-brand-secondary">{lead.role || 'CEO, Nusra Trading Inc.'}</p>
           {lead.bio ? <p className="mt-6 max-w-xl text-base leading-7 text-muted">{lead.bio}</p> : null}
           <div className="mt-7 grid gap-6 sm:grid-cols-2">
             <div>
