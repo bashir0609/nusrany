@@ -9,8 +9,6 @@ const serverEnvSchema = z.object({
   BLOB_READ_WRITE_TOKEN: z.string().optional(),
   RESEND_API_KEY: z.string().optional(),
   RESEND_FROM_EMAIL: z.string().optional(),
-  ADMIN_EMAIL: z.string().email().optional(),
-  ADMIN_PASSWORD: z.string().min(12).optional(),
   NEXT_PUBLIC_GA_ID: z.string().optional(),
   GOOGLE_SITE_VERIFICATION: z.string().optional(),
 })

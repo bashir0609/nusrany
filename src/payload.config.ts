@@ -83,7 +83,10 @@ export default buildConfig({
   },
   plugins: [
     vercelBlobStorage({
-      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      // Register the storage adapter during Vercel builds even when the
+      // encrypted token is injected only at runtime. Without the adapter,
+      // Payload falls back to the read-only serverless filesystem.
+      enabled: process.env.VERCEL === '1' || Boolean(process.env.BLOB_READ_WRITE_TOKEN),
       collections: {
         media: true,
       },
