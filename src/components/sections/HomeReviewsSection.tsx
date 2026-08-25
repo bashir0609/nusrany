@@ -37,24 +37,12 @@ export function HomeReviewsSection({ heading, reviews }: HomeReviewsSectionProps
                 <p className="relative">{review.reviewText}</p>
               </blockquote>
               <figcaption className="mt-5 border-t border-border/80 pt-4">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2">
-                    <cite className="block truncate text-sm font-bold not-italic text-brand-primary">
-                      {review.authorName}
-                    </cite>
-                    {review.serviceReceived ? (
-                      <p className="mt-0.5 truncate text-xs text-muted">{review.serviceReceived}</p>
-                    ) : null}
-                  </div>
-                  {review.sourceUrl ? (
-                    <a
-                      href={review.sourceUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="shrink-0 whitespace-nowrap text-xs font-bold text-brand-secondary underline decoration-brand-lime/70 underline-offset-4 transition hover:text-brand-primary"
-                    >
-                      View on Google
-                    </a>
+                <div className="flex items-center gap-2">
+                  <cite className="block truncate text-sm font-bold not-italic text-brand-primary">
+                    {review.authorName}
+                  </cite>
+                  {review.serviceReceived ? (
+                    <p className="mt-0.5 truncate text-xs text-muted">{review.serviceReceived}</p>
                   ) : null}
                 </div>
               </figcaption>
