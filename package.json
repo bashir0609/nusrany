@@ -24,6 +24,7 @@
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "seed": "tsx scripts/seed.ts",
+    "cleanup-reviews": "tsx scripts/cleanup-reviews.ts",
     "verify:no-placeholders": "node scripts/verify-no-placeholders.mjs"
   },
   "dependencies": {
