@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import type { TeamMember } from '@/payload-types'
 import { Section } from './Section'
@@ -26,7 +25,8 @@ export function HomeTeamSection({ heading, members }: HomeTeamSectionProps) {
         <p className="max-w-2xl text-base leading-7 text-muted">Professional guidance starts with listening. Meet the people behind Nusra Tax &amp; Notary and the Queens office that serves you.</p>
       </div>
       <article className="mt-12 grid overflow-hidden border border-border bg-surface-warm md:grid-cols-[0.8fr_1.2fr]">
-        <Image src={photo?.url ?? '/images/aminul-islam-khan.png'} alt={photo?.alt ?? lead.name} width={900} height={720} className="h-full min-h-[320px] w-full object-cover" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={photo?.url ?? '/images/aminul-islam-khan.png'} alt={photo?.alt ?? lead.name} className="h-full min-h-[320px] w-full object-cover" />
         <div className="p-7 md:p-10">
           <h3 className="text-3xl text-brand-primary">{lead.name || 'Aminul Islam Khan'}</h3>
           <p className="mt-2 text-sm font-bold text-brand-secondary">{lead.role || 'CEO, Nusra Trading Inc.'}</p>
@@ -43,7 +43,16 @@ export function HomeTeamSection({ heading, members }: HomeTeamSectionProps) {
           </div>
         </div>
       </article>
-      {others.length > 0 ? <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{others.map((member) => { const memberPhoto = typeof member.photo === 'object' && member.photo ? member.photo : null; return <li key={member.id} className="border-t border-border pt-4"><h3 className="text-base text-brand-primary">{member.name}</h3><p className="mt-1 text-sm text-muted">{member.role}</p>{memberPhoto?.url ? <Image src={memberPhoto.url} alt={memberPhoto.alt ?? member.name} width={720} height={540} className="mt-4 aspect-[4/3] w-full object-cover" /> : null}</li> })}</ul> : null}
+      {others.length > 0 ? <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{others.map((member) => { const memberPhoto = typeof member.photo === 'object' && member.photo ? member.photo : null; return <li key={member.id} className="border-t border-border pt-4"><h3 className="text-base text-brand-primary">{member.name}</h3><p className="mt-1 text-sm text-muted">{member.role}</p>{memberPhoto?.url ? (
+                  /*
+                   * eslint-disable-next-line @next/next/no-img-element
+                   */
+                  <img
+                    src={memberPhoto.url}
+                    alt={memberPhoto.alt ?? member.name}
+                    className="mt-4 aspect-[4/3] w-full object-cover"
+                  />
+                ) : null}</li> })}</ul> : null}
       <div className="mt-10 text-center"><Link href="/team" className="premium-button premium-button-secondary">Meet the full team</Link></div>
     </Section>
   )

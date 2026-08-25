@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import type { Faq, Review, Service, TeamMember } from '@/payload-types'
+import type { Faq, Review, Service } from '@/payload-types'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { buildLocalBusinessJsonLd } from '@/lib/seo/jsonLd'
 import { JsonLd } from '@/components/seo/JsonLd'
@@ -36,13 +36,12 @@ export default async function HomePage() {
   const homepage = await getHomepage()
   const settings = await getSiteSettings()
   const allServices = await getPublishedServices()
-  const team = await getPublishedTeam()
+  const teamMembers = await getPublishedTeam()
   const reviews = await getPublishedReviews()
   const faqs = await getPublishedFAQs()
 
   const selectedServices = homepage.services?.filter((s): s is Service => typeof s !== 'number') ?? []
   const services = selectedServices.length > 0 ? selectedServices : allServices
-  const teamMembers = homepage.teamMembers?.filter((m): m is TeamMember => typeof m !== 'number') ?? team
   const reviewDocs = homepage.reviews?.filter((r): r is Review => typeof r !== 'number') ?? reviews
   const faqDocs = homepage.faqs?.filter((f): f is Faq => typeof f !== 'number') ?? faqs
 
