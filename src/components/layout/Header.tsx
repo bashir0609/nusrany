@@ -21,18 +21,13 @@ export function Header({ settings, services }: HeaderProps) {
   const isHome = pathname === '/'
   const navServices = services.map((service) => ({ title: service.title, slug: service.slug }))
   const languages = (settings.languages ?? []).map((language) => language.label).filter(Boolean)
-  const firstOfficeHours = settings.officeHours?.[0]
-  const officeHours = firstOfficeHours
-    ? `${firstOfficeHours.days} · ${firstOfficeHours.hours}`
-    : 'Call for current availability'
 
   return (
     <div className={isHome ? 'absolute inset-x-0 top-0 z-50 text-white' : 'relative z-50'}>
       <div className="border-b border-white/10 bg-brand-primary-deep/90 text-xs text-white/90 backdrop-blur-sm">
-        <div className="container-nusra grid gap-x-6 gap-y-1 py-2 text-center sm:grid-cols-2 lg:grid-cols-4 lg:items-center lg:py-2.5">
-          <span>Serving {settings.city || 'Queens'} &amp; the surrounding community</span>
+        <div className="container-nusra grid gap-x-6 gap-y-1 py-2 text-center sm:grid-cols-2 lg:grid-cols-3 lg:items-center lg:py-2.5">
+          <span>Serving NYC & the surrounding community</span>
           <span className="text-brand-lime">{languages.join(' • ')}</span>
-          <span>Office hours: <strong className="text-white">{officeHours}</strong></span>
           <a href={buildTelHref(settings.phone)} className="font-bold text-brand-lime hover:underline">
             Call {formatDisplayPhone(settings.phone)}
           </a>
