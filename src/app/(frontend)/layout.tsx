@@ -6,6 +6,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { MobileContactBar } from '@/components/layout/MobileContactBar'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
+import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 import { getPublishedServices, getSiteSettings } from '@/lib/content/queries'
 import { PUBLIC_SITE_URL } from '@/lib/seo/siteUrl'
 
@@ -36,6 +37,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.variable}>
       <body>
+        <GoogleTagManager />
         <GoogleAnalytics />
         <a href="#main" className="skip-link">
           Skip to main content
