@@ -9,11 +9,10 @@ type HomeTeamSectionProps = {
 
 export function HomeTeamSection({ heading, members }: HomeTeamSectionProps) {
   if (members.length === 0) return null
-  const lead = members.find((member) => member.name.trim().toLowerCase() === 'aminul islam khan') ?? members[0]
-  const others = members.filter((member) => member.id !== lead.id).slice(0, 3)
-  const photo = typeof lead.photo === 'object' && lead.photo ? lead.photo : null
-  const credentials = lead.credentials?.map((item) => item.label).filter(Boolean) ?? ['IRS e-file Provider', 'PTIN Registered Tax Preparer', 'Certified NY Notary Public']
-  const languages = lead.languages?.map((item) => item.label).filter(Boolean) ?? ['English', 'বাংলা', 'Español', 'हिंदी', 'Français']
+  const ceo = members.find((member) => member.name.trim().toLowerCase() === 'aminul islam khan') ?? members[0]
+  const photo = typeof ceo.photo === 'object' && ceo.photo ? ceo.photo : null
+  const credentials = ceo.credentials?.map((item) => item.label).filter(Boolean) ?? ['IRS e-file Provider', 'PTIN Registered Tax Preparer', 'Certified NY Notary Public']
+  const languages = ceo.languages?.map((item) => item.label).filter(Boolean) ?? ['English', 'বাংলা', 'Español', 'हिंदी', 'Français']
 
   return (
     <Section id="team" className="py-16 md:py-24">
@@ -26,11 +25,11 @@ export function HomeTeamSection({ heading, members }: HomeTeamSectionProps) {
       </div>
       <article className="mt-12 grid overflow-hidden border border-border bg-surface-warm md:grid-cols-[0.8fr_1.2fr]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={photo?.url ?? '/images/aminul-islam-khan.png'} alt={photo?.alt ?? lead.name} className="h-full min-h-[320px] w-full object-cover" />
+        <img src={photo?.url ?? '/images/aminul-islam-khan.png'} alt={photo?.alt ?? ceo.name} className="h-full min-h-[320px] w-full object-cover" />
         <div className="p-7 md:p-10">
-          <h3 className="text-3xl text-brand-primary">{lead.name || 'Aminul Islam Khan'}</h3>
-          <p className="mt-2 text-sm font-bold text-brand-secondary">{lead.role || 'CEO, Nusra Trading Inc.'}</p>
-          {lead.bio ? <p className="mt-6 max-w-xl text-base leading-7 text-muted">{lead.bio}</p> : null}
+          <h3 className="text-3xl text-brand-primary">{ceo.name || 'Aminul Islam Khan'}</h3>
+          <p className="mt-2 text-sm font-bold text-brand-secondary">{ceo.role || 'CEO, Nusra Trading Inc.'}</p>
+          {ceo.bio ? <p className="mt-6 max-w-xl text-base leading-7 text-muted">{ceo.bio}</p> : null}
           <div className="mt-7 grid gap-6 sm:grid-cols-2">
             <div>
               <p className="eyebrow">Credentials</p>
@@ -43,16 +42,6 @@ export function HomeTeamSection({ heading, members }: HomeTeamSectionProps) {
           </div>
         </div>
       </article>
-      {others.length > 0 ? <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{others.map((member) => { const memberPhoto = typeof member.photo === 'object' && member.photo ? member.photo : null; return <li key={member.id} className="border-t border-border pt-4"><h3 className="text-base text-brand-primary">{member.name}</h3><p className="mt-1 text-sm text-muted">{member.role}</p>{memberPhoto?.url ? (
-                  /*
-                   * eslint-disable-next-line @next/next/no-img-element
-                   */
-                  <img
-                    src={memberPhoto.url}
-                    alt={memberPhoto.alt ?? member.name}
-                    className="mt-4 aspect-[4/3] w-full object-cover"
-                  />
-                ) : null}</li> })}</ul> : null}
       <div className="mt-10 text-center"><Link href="/team" className="premium-button premium-button-secondary">Meet the full team</Link></div>
     </Section>
   )

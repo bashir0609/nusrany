@@ -1,12 +1,25 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 import type { NextConfig } from 'next'
+import type { Redirect } from 'next/dist/lib/load-custom-routes'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(__filename)
 
-const legacyRedirects = [
+const legacyRedirects: Redirect[] = [
+  // Canonical host: redirect apex to www
+  {
+    source: '/:path*',
+    has: [
+      {
+        type: 'host' as const,
+        value: 'nusrany.com',
+      },
+    ],
+    destination: 'https://www.nusrany.com/:path*',
+    permanent: true,
+  },
   { source: '/about-us', destination: '/about', permanent: true },
   { source: '/make-appoinment', destination: '/contact', permanent: true },
   { source: '/setting-up-corporations', destination: '/business-services', permanent: true },
@@ -46,6 +59,19 @@ const nextConfig: NextConfig = {
   },
   turbopack: {
     root: path.resolve(dirname),
+  },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Link',
+            value: '<https://www.nusrany.com/.well-known/api-catalog.json>; rel="api-catalog"',
+          },
+        ],
+      },
+    ]
   },
 }
 
