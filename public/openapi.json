@@ -1,0 +1,26 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Nusra Tax & Notary API",
+    "version": "1.0.0",
+    "description": "Machine-readable description of public endpoints for Nusra Tax & Notary website. A local tax preparation, notary, and business services provider serving Queens, NY since 2020.",
+    "contact": {
+      "name": "Nusra Tax & Notary",
+      "url": "https://www.nusrany.com/contact"
+    },
+    "license": {
+      "name": "Proprietary"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.nusrany.com",
+      "description": "Production"
+    }
+  ],
+  "paths": {},
+  "externalDocs": {
+    "description": "Learn more about Nusra Tax & Notary services",
+    "url": "https://www.nusrany.com/about"
+  }
+}

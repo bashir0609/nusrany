@@ -1,0 +1,11 @@
+{
+  "issuer": "https://www.nusrany.com",
+  "authorization_endpoint": null,
+  "token_endpoint": null,
+  "response_types_supported": [],
+  "grant_types_supported": [],
+  "token_endpoint_auth_methods_supported": [],
+  "service_documentation": "https://www.nusrany.com",
+  "op_tos_uri": "https://www.nusrany.com/terms",
+  "op_policy_uri": "https://www.nusrany.com/privacy"
+}

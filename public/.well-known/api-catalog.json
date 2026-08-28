@@ -1,5 +1,16 @@
 {
   "api_catalog": {
-    "apis": []
+    "apis": [
+      {
+        "name": "Nusra Tax & Notary",
+        "description": "Public services and company information",
+        "url": "https://www.nusrany.com/openapi.json",
+        "specification": {
+          "type": "openapi",
+          "format": "json",
+          "version": "3.1.0"
+        }
+      }
+    ]
   }
 }
