@@ -65,7 +65,7 @@ export default buildConfig({
   globals: [SiteSettings, Homepage, AboutPage, ContactPage, LegalContent],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
-  serverURL: process.env.SITE_URL || '',
+  serverURL: process.env.SITE_URL || 'https://www.nusrany.com',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

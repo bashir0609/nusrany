@@ -1,12 +1,12 @@
 import 'dotenv/config'
 import { getPayload } from 'payload'
-import config from '../src/payload.config'
+import config from '@payload-config'
 
 // Type definitions for Payload's Lexical rich text
 export type TextNode = { type: 'text'; text: string; version: 1 };
 export type ParagraphNode = { type: 'paragraph'; version: 1; direction: null; format: '' | 'left' | 'start' | 'center' | 'right' | 'end' | 'justify'; indent: 0; children: TextNode[] };
 export type HeadingNode = { type: 'heading'; version: 1; tag: 'h1' | 'h2' | 'h3'; direction: null; format: '' | 'left' | 'start' | 'center' | 'right' | 'end' | 'justify'; indent: 0; children: TextNode[] };
-export type ListNode = { type: 'list'; version: 1; listType: 'bullet' | 'number'; start: 1; direction: null; format: '' | 'left' | 'start' | 'center' | 'right' | 'end' | 'justify'; indent: 0; children: { type: 'listitem'; version: 1; children: TextNode[] }[] };
+export type ListNode = { type: 'list'; version: 1; tag: 'ul' | 'ol'; listType: 'bullet' | 'number'; start: 1; direction: null; format: '' | 'left' | 'start' | 'center' | 'right' | 'end' | 'justify'; indent: 0; children: { type: 'listitem'; version: 1; children: TextNode[] }[] };
 export type ListItemNode = { type: 'listitem'; version: 1; children: TextNode[] };
 
 type BlockNode = ParagraphNode | HeadingNode | ListNode | ListItemNode;
@@ -52,6 +52,7 @@ export function bulletList(items: string[]): ListNode {
     type: 'list',
     version: 1,
     listType: 'bullet',
+    tag: 'ul',
     start: 1,
     direction: null,
     format: '',
@@ -69,6 +70,7 @@ export function orderedList(items: string[]): ListNode {
     type: 'list',
     version: 1,
     listType: 'number',
+    tag: 'ol',
     start: 1,
     direction: null,
     format: '',
@@ -83,7 +85,6 @@ export function orderedList(items: string[]): ListNode {
 
 export function richText(...blocks: BlockNode[]): {
   root: RichTextContent;
-  [k: string]: unknown;
 } {
   return {
     root: {
@@ -94,7 +95,6 @@ export function richText(...blocks: BlockNode[]): {
       indent: 0,
       children: blocks,
     },
-    // Lexical editor expects root to match its internal structure
   };
 }
 
@@ -218,6 +218,13 @@ async function main() {
         },
       })
       console.log(`Created: ${created.title} (slug: ${created.slug})`)
+      // Update status to published like in test-simple-post.ts
+      await payload.update({
+        collection: 'blog-posts',
+        id: created.id,
+        data: { _status: 'published' },
+      })
+      console.log(`Published: ${created.title}`)
     } else {
       console.log(`Already exists: ${post.title}`)
     }

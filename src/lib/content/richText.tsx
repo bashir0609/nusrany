@@ -15,6 +15,16 @@ export function RichTextContent({ data, className }: RichTextContentProps) {
 
   const converters: JSXConvertersFunction = ({ defaultConverters }) => ({
     ...defaultConverters,
+    list: (args) => {
+      // Older generated blog lists omit the tag required by Payload's converter.
+      const node = args.node
+      const converter = defaultConverters.list
+      if (typeof converter !== 'function') return converter
+      return converter({
+        ...args,
+        node: { ...node, tag: node.tag ?? (node.listType === 'number' ? 'ol' : 'ul') },
+      })
+    },
     link: ({ node, nodesToJSX }) => {
       const linkNode = node as unknown as { url?: string; linkType?: string }
       const url = linkNode.url ?? '#'

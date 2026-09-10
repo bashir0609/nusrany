@@ -1,8 +1,9 @@
 import dotenv from 'dotenv'; dotenv.config({ path: '.env' }); dotenv.config({ path: '.env.local' });
 import { getPayload } from 'payload'
-import config from '../src/payload.config'
+
 
 async function main() {
+  const { default: config } = await import('@payload-config')
   const payload = await getPayload({ config })
 
   const posts = await payload.find({

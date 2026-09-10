@@ -1,9 +1,6 @@
 import 'dotenv/config'
 import { getPayload } from 'payload'
-import config from '../src/payload.config'
-
-// Import type-safe rich text helpers from the fixed create-blog-posts script
-import { richText, paragraph, heading } from './create-blog-posts.ts'
+import config from '@payload-config'
 
 async function main() {
   const payload = await getPayload({ config })
@@ -27,9 +24,35 @@ async function main() {
         excerpt: 'A simple test post to verify blog rendering.',
         category: taxId,
         publishedAt: new Date('2026-01-01T00:00:00.000Z').toISOString(),
-        content: richText(
-          paragraph('This is a simple test blog post.')
-        ),
+        content: {
+          root: {
+            type: 'root',
+            version: 1,
+            direction: 'ltr',
+            format: '',
+            indent: 0,
+            children: [
+              {
+                type: 'paragraph',
+                version: 1,
+                direction: 'ltr',
+                format: '',
+                indent: 0,
+                children: [
+                  {
+                    type: 'text',
+                    version: 1,
+                    text: 'This is a simple test blog post.',
+                    style: '',
+                    detail: 0,
+                    format: 0,
+                    mode: 'normal',
+                  },
+                ],
+              },
+            ],
+          },
+        },
         seo: {
           title: 'Test Simple Post | Nusra',
           description: 'A simple test post.',
