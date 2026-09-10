@@ -1,9 +1,9 @@
-import dotenv from 'dotenv'; dotenv.config({ path: '.env' }); dotenv.config({ path: '.env.local' });
+import 'dotenv/config'
 import { getPayload } from 'payload'
 import config from '../src/payload.config'
 
 // Import type-safe rich text helpers from the fixed create-blog-posts script
-import { text, paragraph, heading, bulletList, orderedList, richText } from './create-blog-posts'
+import { richText, paragraph, heading } from './create-blog-posts.ts'
 
 async function main() {
   const payload = await getPayload({ config })
