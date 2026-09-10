@@ -39,7 +39,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound()
 
   const [related, settings] = await Promise.all([getRelatedPosts(post), getSiteSettings()])
-  const enhancements = getArticleEnhancements(slug)
+  const enhancements = getArticleEnhancements(post.slug, post.excerpt)
   const faqs = enhancements?.faqs ?? []
   const links = enhancements?.links ?? []
   const ldJson = [buildArticleJsonLd(post, settings)]

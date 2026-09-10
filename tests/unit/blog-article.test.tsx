@@ -129,9 +129,9 @@ describe('Blog article enhancements', () => {
     expect(within(nav).getByRole('link', { name: 'Useful next steps' })).toHaveAttribute('href', '#article-links')
   })
 
-  it('keeps contact and call CTAs for an unrelated slug with no related services', async () => {
+  it('provides all enhancements for a future post with no related services', async () => {
     const slug = 'unrelated-community-update'
-    expect(getArticleEnhancements(slug)).toBeNull()
+    const enhancements = getArticleEnhancements(slug, makePost(slug).excerpt)
     const { container } = await renderArticle(slug)
     const contact = screen.getByRole('region', { name: 'Have a question?' })
     expect(within(contact).getByRole('link', { name: 'Contact us' })).toBeVisible()
@@ -141,11 +141,30 @@ describe('Blog article enhancements', () => {
     expect(call).toHaveAttribute('href', 'tel:7185550100')
     expect(screen.queryByRole('heading', { name: 'Related services' })).not.toBeInTheDocument()
     for (const name of ['At a glance', 'Frequently asked questions', 'Useful next steps']) {
-      expect(screen.queryByRole('region', { name })).not.toBeInTheDocument()
-      expect(screen.queryByRole('link', { name })).not.toBeInTheDocument()
+      expect(screen.getByRole('region', { name })).toBeVisible()
+      expect(screen.getByRole('link', { name })).toBeVisible()
     }
-    expect(readSchemas(container).some((schema) => schema['@type'] === 'FAQPage')).toBe(false)
+    const summary = screen.getByRole('region', { name: 'At a glance' })
+    expect(within(summary).getByText(makePost(slug).excerpt)).toBeVisible()
+    const links = screen.getByRole('region', { name: 'Useful next steps' })
+    expect(within(links).getAllByRole('link').map((link) => link.getAttribute('href')))
+      .toEqual(['/services', '/blog', '/contact'])
+    const faq = screen.getByRole('region', { name: 'Frequently asked questions' })
+    enhancements.faqs.forEach(({ question, answer }) => {
+      expect(within(faq).getByText(question)).toBeVisible()
+      expect(within(faq).getByText(answer)).toBeVisible()
+    })
+    expect(readSchemas(container).find((schema) => schema['@type'] === 'FAQPage').mainEntity)
+      .toEqual(enhancements.faqs.map(({ question, answer }) => ({
+        '@type': 'Question', name: question,
+        acceptedAnswer: { '@type': 'Answer', text: answer },
+      })))
     expect(getPostBySlug).toHaveBeenCalledWith(slug, false)
+  })
+
+  it('provides a nonempty fallback summary when an excerpt is blank', () => {
+    expect(getArticleEnhancements('new-post', '   ').summary.trim().length).toBeGreaterThan(0)
+    expect(getArticleEnhancements('constructor').faqs.length).toBeGreaterThan(0)
   })
 
   it('uses Organization for the business fallback author in the rendered Article schema', async () => {

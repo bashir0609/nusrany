@@ -4,7 +4,7 @@ type ArticleEnhancements = {
   links: Array<{ href: string; title: string; description: string }>
 }
 
-// Editorial supplements for these specific guides, not generic FAQ text on every post.
+// Specific editorial content takes precedence over the shared article defaults.
 const articles: Record<string, ArticleEnhancements> = {
   'tax-preparation-jamaica-ny-expect': {
     summary: 'Preparing for a tax appointment in Jamaica, Queens? Gather your photo ID, tax documents, prior-year return, and records of income and expenses. Contact Nusra Tax & Notary before your visit to confirm which documents apply to your situation and request an appointment.',
@@ -37,6 +37,21 @@ const articles: Record<string, ArticleEnhancements> = {
   },
 }
 
-export function getArticleEnhancements(slug: string): ArticleEnhancements | null {
-  return Object.hasOwn(articles, slug) ? articles[slug] : null
+export function getArticleEnhancements(slug: string, excerpt = ''): ArticleEnhancements {
+  if (Object.hasOwn(articles, slug)) return articles[slug]
+
+  return {
+    summary: excerpt.trim() || 'Explore this guide from Nusra Tax & Notary, then contact the team to discuss which services and next steps apply to your situation.',
+    faqs: [
+      { question: 'How can I ask a question about this guide?', answer: 'Contact Nusra Tax & Notary by phone or through the contact page. Mention the article and briefly describe what you need help with so the team can discuss appropriate next steps.' },
+      { question: 'Does this guide replace advice about my individual situation?', answer: 'This article provides general information. Requirements can vary by service and individual circumstances. Confirm current requirements with the relevant organization or a qualified professional before acting.' },
+      { question: 'What should I confirm before visiting?', answer: 'Contact the office to confirm service availability, appointment requirements, current fees, and any documents or identification you should bring.' },
+      { question: 'Should I send personal documents through the contact form?', answer: 'Do not submit Social Security numbers, financial records, or other sensitive documents through the general contact form. Ask the team how to share any required documents securely.' },
+    ],
+    links: [
+      { href: '/services', title: 'Explore our services', description: 'Find the support that fits your needs before arranging a visit.' },
+      { href: '/blog', title: 'Read more practical guides', description: 'Browse more articles from Nusra Tax & Notary.' },
+      { href: '/contact', title: 'Discuss your next steps', description: 'Ask a question or request an appointment with the team.' },
+    ],
+  }
 }
