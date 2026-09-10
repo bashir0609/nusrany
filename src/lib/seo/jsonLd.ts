@@ -60,7 +60,7 @@ export function buildArticleJsonLd(post: BlogPost, settings: SiteSetting): JsonL
     dateModified: post.updatedAtOverride ?? post.updatedAt ?? post.publishedAt,
     url: `${siteUrl()}/blog/${post.slug}`,
     author: {
-      '@type': 'Person',
+      '@type': authorName ? 'Person' : 'Organization',
       name: authorName || settings.businessName,
     },
     publisher: {
